@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stX Particle Effect</title>
+    <style>
+        @font-face {
+            font-family: 'MeraPro-V4Oex';
+            src: url('MeraPro-V4Oex.otf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'MeraPro-V4Oex', 'Courier New', monospace;
+            background: black;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: black;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+        }
+
+        .bottom-text {
+            position: absolute;
+            bottom: 100px;
+            text-align: center;
+            z-index: 10;
+            font-family: 'MeraPro-V4Oex', 'Courier New', monospace;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        .invite-link {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .invite-link:hover {
+            color: #ff00b3;
+        }
+
+        .invite-link:hover + span + span {
+            color: #ff9900;
+            transition: color 0.3s ease;
+        }
+
+        .fork-link {
+            color: #6b7280;
+            font-size: 12px;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .aws-text {
+            transition: color 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .bottom-text {
+                font-size: 12px;
+            }
+            
+            .fork-link {
+                font-size: 10px;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .bottom-text {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .bottom-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="particleCanvas" aria-label="Interactive particle effect with stX text"></canvas>
+    </div>
+
+    <script>
+        class ParticleEffect {
+            constructor() {
+                this.canvas = document.getElementById('particleCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.textImageData = null;
+                this.mousePosition = { x: 0, y: 0 };
+                this.isTouching = false;
+                this.isMobile = window.innerWidth < 768;
+                this.animationFrameId = null;
+
+                this.init();
+                this.setupEventListeners();
+            }
+
+            init() {
+                this.updateCanvasSize();
+                const scale = this.createTextImage();
+                this.createInitialParticles(scale);
+                this.animate(scale);
+            }
+
+            updateCanvasSize() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                this.isMobile = window.innerWidth < 768;
+            }
+
+            createTextImage() {
+                if (!this.ctx || !this.canvas) return 0;
+
+                this.ctx.fillStyle = 'white';
+                this.ctx.save();
+
+                // Draw "stX" text
+                const fontSize = this.isMobile ? 80 : 160;
+                this.ctx.font = `normal ${fontSize}px MeraPro-V4Oex`;
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.fillText('stX.', this.canvas.width / 2, this.canvas.height / 2);
+
+                this.ctx.restore();
+
+                this.textImageData = this.ctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                return 1;
+            }
+
+            createParticle() {
+                if (!this.ctx || !this.canvas || !this.textImageData) return null;
+
+                const data = this.textImageData.data;
+
+                for (let attempt = 0; attempt < 100; attempt++) {
+                    const x = Math.floor(Math.random() * this.canvas.width);
+                    const y = Math.floor(Math.random() * this.canvas.height);
+
+                    if (data[(y * this.canvas.width + x) * 4 + 3] > 128) {
+                        return {
+                            x: x,
+                            y: y,
+                            baseX: x,
+                            baseY: y,
+                            size: Math.random() * 1 + 0.5,
+                            color: 'white',
+                            scatteredColor: '#00DCFF',
+                            life: Math.random() * 100 + 50
+                        };
+                    }
+                }
+
+                return null;
+            }
+
+            createInitialParticles(scale) {
+                const baseParticleCount = 7000;
+                const particleCount = Math.floor(baseParticleCount * Math.sqrt((this.canvas.width * this.canvas.height) / (1920 * 1080)));
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = this.createParticle();
+                    if (particle) this.particles.push(particle);
+                }
+            }
+
+            animate(scale) {
+                if (!this.ctx || !this.canvas) return;
+                
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                this.ctx.fillStyle = 'black';
+                this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+                const { x: mouseX, y: mouseY } = this.mousePosition;
+                const maxDistance = 240;
+
+                for (let i = 0; i < this.particles.length; i++) {
+                    const p = this.particles[i];
+                    const dx = mouseX - p.x;
+                    const dy = mouseY - p.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < maxDistance && (this.isTouching || !('ontouchstart' in window))) {
+                        const force = (maxDistance - distance) / maxDistance;
+                        const angle = Math.atan2(dy, dx);
+                        const moveX = Math.cos(angle) * force * 60;
+                        const moveY = Math.sin(angle) * force * 60;
+                        p.x = p.baseX - moveX;
+                        p.y = p.baseY - moveY;
+                        
+                        this.ctx.fillStyle = p.scatteredColor;
+                    } else {
+                        p.x += (p.baseX - p.x) * 0.1;
+                        p.y += (p.baseY - p.y) * 0.1;
+                        this.ctx.fillStyle = 'white';
+                    }
+
+                    this.ctx.fillRect(p.x, p.y, p.size, p.size);
+
+                    p.life--;
+                    if (p.life <= 0) {
+                        const newParticle = this.createParticle();
+                        if (newParticle) {
+                            this.particles[i] = newParticle;
+                        } else {
+                            this.particles.splice(i, 1);
+                            i--;
+                        }
+                    }
+                }
+
+                const baseParticleCount = 7000;
+                const targetParticleCount = Math.floor(baseParticleCount * Math.sqrt((this.canvas.width * this.canvas.height) / (1920 * 1080)));
+                while (this.particles.length < targetParticleCount) {
+                    const newParticle = this.createParticle();
+                    if (newParticle) this.particles.push(newParticle);
+                }
+
+                this.animationFrameId = requestAnimationFrame(() => this.animate(scale));
+            }
+
+            handleResize() {
+                this.updateCanvasSize();
+                const newScale = this.createTextImage();
+                this.particles = [];
+                this.createInitialParticles(newScale);
+            }
+
+            handleMove(x, y) {
+                this.mousePosition = { x, y };
+            }
+
+            handleMouseMove(e) {
+                this.handleMove(e.clientX, e.clientY);
+            }
+
+            handleTouchMove(e) {
+                if (e.touches.length > 0) {
+                    e.preventDefault();
+                    this.handleMove(e.touches[0].clientX, e.touches[0].clientY);
+                }
+            }
+
+            handleTouchStart() {
+                this.isTouching = true;
+            }
+
+            handleTouchEnd() {
+                this.isTouching = false;
+                this.mousePosition = { x: 0, y: 0 };
+            }
+
+            handleMouseLeave() {
+                if (!('ontouchstart' in window)) {
+                    this.mousePosition = { x: 0, y: 0 };
+                }
+            }
+
+            setupEventListeners() {
+                window.addEventListener('resize', () => this.handleResize());
+                this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
+                this.canvas.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
+                this.canvas.addEventListener('mouseleave', () => this.handleMouseLeave());
+                this.canvas.addEventListener('touchstart', () => this.handleTouchStart());
+                this.canvas.addEventListener('touchend', () => this.handleTouchEnd());
+            }
+
+            destroy() {
+                if (this.animationFrameId) {
+                    cancelAnimationFrame(this.animationFrameId);
+                }
+                window.removeEventListener('resize', () => this.handleResize());
+                this.canvas.removeEventListener('mousemove', (e) => this.handleMouseMove(e));
+                this.canvas.removeEventListener('touchmove', (e) => this.handleTouchMove(e));
+                this.canvas.removeEventListener('mouseleave', () => this.handleMouseLeave());
+                this.canvas.removeEventListener('touchstart', () => this.handleTouchStart());
+                this.canvas.removeEventListener('touchend', () => this.handleTouchEnd());
+            }
+        }
+
+        // Initialize the particle effect when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Wait for font to load
+            document.fonts.ready.then(() => {
+                console.log('Fonts loaded:', document.fonts.check('12px MeraPro-V4Oex'));
+                new ParticleEffect();
+            });
+        });
+    </script>
+</body>
+</html>
