@@ -1657,15 +1657,17 @@
         }
 
         /* Floating contact mobile */
-        .floating-contact {
-            bottom: 1rem;
-            right: 1rem;
-            padding: 0.75rem 1.25rem;
-            font-size: 0.85rem;
-        }
+        @media (max-width: 768px) {
+            .floating-contact {
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.75rem 1.25rem;
+                font-size: 0.85rem;
+            }
 
-        .floating-contact i {
-            font-size: 1rem;
+            .floating-contact i {
+                font-size: 1rem;
+            }
         }
 
         /* Scroll animations */
@@ -1678,6 +1680,322 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* 3D Stacking Project deck mobile-responsive styles */
+        .project-deck-wrapper {
+            margin-top: 5rem;
+        }
+
+        /* Desktop setup defaults */
+        .project-card-inner {
+            transform-origin: top center;
+            transition: none;
+            will-change: transform, opacity;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        .project-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            width: 100%;
+        }
+
+        .project-card-left {
+            padding: 2.5rem !important;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem !important;
+        }
+
+        .project-card-right {
+            padding: 2.5rem !important;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .project-card-right p {
+            font-size: 0.95rem !important;
+            line-height: 1.75 !important;
+            color: #aaa !important;
+        }
+        
+        .project-card-right img.client-logo {
+            width: 280px !important;
+            height: 70px !important;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Mobile specific styles */
+        @media (max-width: 768px) {
+            .project-deck-wrapper {
+                padding-bottom: 0 !important;
+                margin-top: 2.5rem !important;
+            }
+            .project-deck-wrapper h2 {
+                font-size: 1.4rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+            .project-card-deck-item {
+                margin-bottom: 2rem !important;
+            }
+            .project-card-inner {
+                border-radius: 16px !important;
+            }
+            .project-card-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .project-card-left {
+                padding: 1.2rem !important;
+                gap: 1rem !important;
+            }
+            .project-card-left .screenshot-container {
+                border-radius: 10px !important;
+            }
+            .project-card-left .tech-stack-tags {
+                gap: 0.35rem !important;
+            }
+            .project-card-left .tech-stack-tags span {
+                padding: 0.25rem 0.6rem !important;
+                font-size: 0.65rem !important;
+                border-radius: 12px !important;
+            }
+            .project-card-left .cta-links {
+                gap: 1.2rem !important;
+                margin-top: 0.5rem !important;
+            }
+            .project-card-left .cta-links a {
+                font-size: 0.75rem !important;
+            }
+            .project-card-right {
+                padding: 1.2rem !important;
+                gap: 0.8rem !important;
+                border-left: none !important;
+                border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+            }
+            .project-card-right .badge {
+                font-size: 0.7rem !important;
+            }
+            .project-card-right img.client-logo {
+                width: 180px !important;
+                height: 45px !important;
+            }
+            .project-card-right p {
+                font-size: 0.8rem !important;
+                line-height: 1.5 !important;
+            }
+        }
+
+        /* Mobile Apps Custom Styles (Desktop Defaults & Mobile Friendly) */
+        .mobile-apps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .mobile-app-card {
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6);
+            height: 420px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .mobile-app-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .mobile-app-inner {
+            display: grid;
+            grid-template-columns: 42% 58%;
+            height: 100%;
+        }
+
+        .mobile-app-screenshot {
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+        }
+
+        .mobile-app-screenshot img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-app-info {
+            padding: 1.8rem 1.8rem 1.8rem 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            justify-content: center;
+            border-left: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .mobile-app-badge {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+        }
+
+        .mobile-app-title {
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .mobile-app-tagline {
+            font-size: 0.82rem;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .mobile-app-description {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .mobile-app-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 0.2rem;
+        }
+
+        .mobile-app-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .mobile-app-feature-item i {
+            font-size: 0.75rem;
+        }
+
+        .mobile-app-feature-item span {
+            color: #aaa;
+            font-size: 0.76rem;
+        }
+
+        .mobile-app-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.3rem;
+        }
+
+        .mobile-app-tech-tag {
+            background: rgba(255, 255, 255, 0.06);
+            color: #ccc;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.62rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile specific styles for phone - neat & organized, small text */
+        @media (max-width: 768px) {
+            .mobile-apps-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+
+            .mobile-app-card {
+                height: auto !important; /* Allow variable height on phone */
+                border-radius: 16px !important;
+            }
+
+            .mobile-app-inner {
+                grid-template-columns: 110px 1fr !important; /* Keep the image on left */
+            }
+
+            .mobile-app-screenshot {
+                padding: 0.8rem 0.5rem 0.8rem 0.8rem !important;
+                background: transparent !important;
+                border-bottom: none !important;
+                border-right: 1px solid rgba(255, 255, 255, 0.04) !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .mobile-app-screenshot img {
+                max-height: 150px !important; /* Limit height of mockup on phone to look clean and neat */
+                border-radius: 10px !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+                object-fit: contain !important;
+                width: auto !important;
+                height: auto !important;
+            }
+
+            .mobile-app-info {
+                padding: 1rem !important; /* Even and comfortable margins */
+                gap: 0.4rem !important;
+                border-left: none !important; /* Remove side border on stacked view */
+            }
+
+            .mobile-app-badge {
+                font-size: 0.58rem !important;
+            }
+
+            .mobile-app-title {
+                font-size: 1.15rem !important;
+                line-height: 1.2 !important;
+            }
+
+            .mobile-app-tagline {
+                font-size: 0.68rem !important;
+                line-height: 1.2 !important;
+            }
+
+            .mobile-app-description {
+                font-size: 0.72rem !important;
+                line-height: 1.4 !important;
+                color: #8c8c8c !important; /* Slightly more readable gray on dark */
+            }
+
+            .mobile-app-features {
+                gap: 0.25rem !important;
+                margin-top: 0.1rem !important;
+            }
+
+            .mobile-app-feature-item span {
+                font-size: 0.7rem !important;
+            }
+
+            .mobile-app-feature-item i {
+                font-size: 0.68rem !important;
+            }
+
+            .mobile-app-tech {
+                margin-top: 0.2rem !important;
+                gap: 0.3rem !important;
+            }
+
+            .mobile-app-tech-tag {
+                font-size: 0.56rem !important;
+                padding: 0.15rem 0.45rem !important;
+            }
         }
     </style>
 </head>
@@ -1822,7 +2140,7 @@
 
     <!-- Portfolio Section -->
     <section class="section" id="portfolio"
-        style="background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; margin: 4rem auto; max-width: 1150px; overflow: hidden; position: relative; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);">
+        style="background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; margin: 4rem auto; max-width: 1150px; position: relative; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);">
         <div style="padding: 3rem 2.5rem;">
             <div style="display: flex; align-items: center; gap: 2.5rem; margin-bottom: 3rem;">
                 <div style="flex: 1;">
@@ -1933,179 +2251,180 @@
                     </div>
                 </div>
             </div>
-<!-- MVIZ TECHNOLOGIES - Featured Project Showcase -->
-            <div style="margin-top: 4rem;">
-            <h2 style="font-size: 1.8rem; font-weight: 300; color: #ffffff; text-align: center; margin-bottom: 2.5rem;">Featured Project</h2>
-                <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6);">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0;">
-                        <!-- Left Column: Banner + Tech + CTA -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem;">
-                            <!-- Website Screenshot Banner -->
-                            <div style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
-                                <img src="projects/mviz-homepage.png" alt="mviz Technologies Homepage" style="width: 100%; display: block; object-fit: cover;">
-                            </div>
-                            <!-- Tech Stack Tags -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CLOUD APIS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
-                            </div>
-                            <!-- CTA Links -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
-                                <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
-                                <a href="https://www.mvizindia.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
-                            </div>
-                        </div>
+<!-- START 3D DECK WRAPPER -->
+            <div class="project-deck-wrapper">
+                <h2 style="font-size: 1.8rem; font-weight: 300; color: #ffffff; text-align: center; margin-bottom: 3.5rem; letter-spacing: 0.05em;">Featured Projects</h2>
 
-                        <!-- Right Column: Client Info -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1rem; border-left: 1px solid rgba(255,255,255,0.06);">
-                            <!-- Header Badge + Meta -->
-                            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
-                                <span style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">ENTERPRISE SOLUTIONS</span>
+                <!-- MVIZ TECHNOLOGIES - Card index 0 -->
+                <div class="project-card-deck-item" data-index="0" style="position: sticky; top: 100px; z-index: 10; margin-bottom: 6rem; width: 100%;">
+                    <div class="project-card-inner">
+                        <div class="project-card-grid">
+                            <!-- Left Column: Banner + Tech + CTA -->
+                            <div class="project-card-left">
+                                <!-- Website Screenshot Banner -->
+                                <div class="screenshot-container" style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
+                                    <img src="projects/mviz-homepage.png" alt="mviz Technologies Homepage" style="width: 100%; display: block; object-fit: cover;">
+                                </div>
+                                <!-- Tech Stack Tags -->
+                                <div class="tech-stack-tags" style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CLOUD APIS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
+                                </div>
+                                <!-- CTA Links -->
+                                <div class="cta-links" style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
+                                    <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
+                                    <a href="https://www.mvizindia.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
+                                </div>
                             </div>
-                            <!-- Client Icon -->
-                            <div style="margin-bottom: 0.4rem;">
-                                <img src="projects/mviz-icon.png" alt="mviz" style="width: 350px; height: 80px; object-fit: contain; filter: brightness(0) invert(1);">
-                            </div>
-                            <!-- Client Line -->
-                            <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> mviz Technologies</p>
-                            <!-- Description -->
-                            <p style="color: #999; line-height: 1.7; font-size: 0.88rem; margin: 0;">A bold, dark-themed enterprise website built to showcase mviz Technologies' digital infrastructure and automation capabilities. The site features a cinematic hero section with warm orange-red lighting accents, clean navigation with a prominent red CTA, and dedicated pages for Services, Projects, and About. Typography is sharp and modern with a strong corporate identity, designed to feel high-performance and future-ready.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Featured Project Showcase -->
 
-<!-- COSMIQ CONSULTING - Featured Project Showcase -->
-            <div style="margin-top: 4rem;">
-                <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6);">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0;">
-                        <!-- Left Column: Banner + Tech + CTA -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem;">
-                            <!-- Website Screenshot Banner -->
-                            <div style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
-                                <img src="projects/cosmiq-homepage.png" alt="mviz Technologies Homepage" style="width: 100%; display: block; object-fit: cover;">
+                            <!-- Right Column: Client Info -->
+                            <div class="project-card-right">
+                                <!-- Header Badge + Meta -->
+                                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
+                                    <span class="badge" style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">ENTERPRISE SOLUTIONS</span>
+                                </div>
+                                <!-- Client Icon -->
+                                <div style="margin-bottom: 0.4rem;">
+                                    <img class="client-logo" src="projects/mviz-icon.png" alt="mviz">
+                                </div>
+                                <!-- Client Line -->
+                                <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> mviz Technologies</p>
+                                <!-- Description -->
+                                <p>A bold, dark-themed enterprise website built to showcase mviz Technologies' digital infrastructure and automation capabilities. The site features a cinematic hero section with warm orange-red lighting accents, clean navigation with a prominent red CTA, and dedicated pages for Services, Projects, and About. Typography is sharp and modern with a strong corporate identity, designed to feel high-performance and future-ready.</p>
                             </div>
-                            <!-- Tech Stack Tags -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CLOUD APIS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CUSTOM CMS FOR BLOGS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
-                            </div>
-                            <!-- CTA Links -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
-                                <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
-                                <a href="https://www.cosmiqconsulting.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Right Column: Client Info -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1rem; border-left: 1px solid rgba(255,255,255,0.06);">
-                            <!-- Header Badge + Meta -->
-                            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
-                                <span style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">VASTU CONSULTANCY</span>
-                            </div>
-                            <!-- Client Icon -->
-                            <div style="margin-bottom: 0.4rem;">
-                                <img src="projects/cosmiq-icon.png" alt="mviz" style="width: 350px; height: 80px; object-fit: contain; filter: brightness(0) invert(1);">
-                            </div>
-                            <!-- Client Line -->
-                            <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> cosmiq consultancy</p>
-                            <!-- Description -->
-                            <p style="color: #999; line-height: 1.7; font-size: 0.88rem; margin: 0;">Developed and deployed the official website for Cosmiq Consulting, a premium spatial alignment and Vastu consultancy. Built with a focus on seamless user experience, the site features an elegant frontend layout, intuitive navigation for their consulting services, and an integrated booking framework to streamline client onboarding. Engineered the platform to ensure lightning-fast load times, responsive mobile rendering, and solid SEO performance.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- End Featured Project Showcase -->
 
-<!-- AERTH MOBILITY - Featured Project Showcase -->
-            <div style="margin-top: 4rem;">
-                <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6);">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0;">
-                        <!-- Left Column: Banner + Tech + Key Results + CTA -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem;">
-                            <!-- Website Screenshot Banner -->
-                            <div style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
-                                <img src="projects/aerth-homepage.png" alt="AERTH MOBILITY Homepage" style="width: 100%; display: block; object-fit: cover;">
+                <!-- COSMIQ CONSULTING - Card index 1 -->
+                <div class="project-card-deck-item" data-index="1" style="position: sticky; top: 148px; z-index: 11; margin-bottom: 6rem; width: 100%;">
+                    <div class="project-card-inner">
+                        <div class="project-card-grid">
+                            <!-- Left Column: Banner + Tech + CTA -->
+                            <div class="project-card-left">
+                                <!-- Website Screenshot Banner -->
+                                <div class="screenshot-container" style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
+                                    <img src="projects/cosmiq-homepage.png" alt="mviz Technologies Homepage" style="width: 100%; display: block; object-fit: cover;">
+                                </div>
+                                <!-- Tech Stack Tags -->
+                                <div class="tech-stack-tags" style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CLOUD APIS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CUSTOM CMS FOR BLOGS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
+                                </div>
+                                <!-- CTA Links -->
+                                <div class="cta-links" style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
+                                    <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
+                                    <a href="https://www.cosmiqconsulting.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
+                                </div>
                             </div>
-                            <!-- Tech Stack Tags -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
-                            </div>
-                            <!-- CTA Links -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
-                                <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
-                                <a href="https://aerthmobility.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
-                            </div>
-                        </div>
 
-                        <!-- Right Column: Client Info + Challenge/Solution -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1rem; border-left: 1px solid rgba(255,255,255,0.06);">
-                            <!-- Header Badge + Meta -->
-                            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
-                                <span style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">EV SERVICE PLATFORM</span>
-                                <span style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem;"><i class="fas fa-calendar-alt" style="font-size: 0.72rem;"></i> 9 months</span>
-                                <span style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem;"><i class="fas fa-users" style="font-size: 0.72rem;"></i> 14 engineers</span>
+                            <!-- Right Column: Client Info -->
+                            <div class="project-card-right">
+                                <!-- Header Badge + Meta -->
+                                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
+                                    <span class="badge" style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">VASTU CONSULTANCY</span>
+                                </div>
+                                <!-- Client Icon -->
+                                <div style="margin-bottom: 0.4rem;">
+                                    <img class="client-logo" src="projects/cosmiq-icon.png" alt="mviz">
+                                </div>
+                                <!-- Client Line -->
+                                <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> cosmiq consultancy</p>
+                                <!-- Description -->
+                                <p>Developed and deployed the official website for Cosmiq Consulting, a premium spatial alignment and Vastu consultancy. Built with a focus on seamless user experience, the site features an elegant frontend layout, intuitive navigation for their consulting services, and an integrated booking framework to streamline client onboarding. Engineered the platform to ensure lightning-fast load times, responsive mobile rendering, and solid SEO performance.</p>
                             </div>
-                            <!-- Client Icon -->
-                            <div style="margin-bottom: 0.4rem;">
-                                <img src="projects/aerth-icon.png" alt="AERTH" style="width: 350px; height: 80px; object-fit: contain; filter: brightness(0) invert(1);">
-                            </div>
-                            <!-- Client Line -->
-                            <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> Aerth Mobility Pvt Ltd</p>
-                            <!-- Description -->
-                            <p style="color: #999; line-height: 1.7; font-size: 0.88rem; margin: 0;">A fully responsive multi-page website designed with a rich dark green theme and bold color accents to reflect the EV energy and sustainability identity. The site features a cinematic hero section, smooth scroll transitions, dedicated pages for Services, Service Centers, Skill Centers, and Partners. Typography and visual hierarchy were crafted to feel premium, modern, and mobility-forward.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- End Featured Project Showcase -->
 
-<!-- GUIDED WEALTHY - Featured Project Showcase -->
-            <div style="margin-top: 4rem;">
-                <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6);">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 0;">
-                        <!-- Left Column: Banner + Tech + CTA -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1.2rem;">
-                            <!-- Website Screenshot Banner -->
-                            <div style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
-                                <img src="projects/guided-homepage.png" alt="mviz Technologies Homepage" style="width: 100%; display: block; object-fit: cover;">
+                <!-- AERTH MOBILITY - Card index 2 -->
+                <div class="project-card-deck-item" data-index="2" style="position: sticky; top: 196px; z-index: 12; margin-bottom: 6rem; width: 100%;">
+                    <div class="project-card-inner">
+                        <div class="project-card-grid">
+                            <!-- Left Column: Banner + Tech + Key Results + CTA -->
+                            <div class="project-card-left">
+                                <!-- Website Screenshot Banner -->
+                                <div class="screenshot-container" style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
+                                    <img src="projects/aerth-homepage.png" alt="AERTH MOBILITY Homepage" style="width: 100%; display: block; object-fit: cover;">
+                                </div>
+                                <!-- Tech Stack Tags -->
+                                <div class="tech-stack-tags" style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
+                                </div>
+                                <!-- CTA Links -->
+                                <div class="cta-links" style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
+                                    <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
+                                    <a href="https://aerthmobility.com" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
+                                </div>
                             </div>
-                            <!-- Tech Stack Tags -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CLOUD APIS</span>
-                                <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
-                            </div>
-                            <!-- CTA Links -->
-                            <div style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
-                                <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
-                                <a href="https://www.guidedwealthy.in" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
+
+                            <!-- Right Column: Client Info + Challenge/Solution -->
+                            <div class="project-card-right">
+                                <!-- Header Badge + Meta -->
+                                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
+                                    <span class="badge" style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">EV SERVICE PLATFORM</span>
+                                    <span style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem;"><i class="fas fa-calendar-alt" style="font-size: 0.72rem;"></i> 9 months</span>
+                                    <span style="color: #666; font-size: 0.8rem; display: flex; align-items: center; gap: 0.3rem;"><i class="fas fa-users" style="font-size: 0.72rem;"></i> 14 engineers</span>
+                                </div>
+                                <!-- Client Icon -->
+                                <div style="margin-bottom: 0.4rem;">
+                                    <img class="client-logo" src="projects/aerth-icon.png" alt="AERTH">
+                                </div>
+                                <!-- Client Line -->
+                                <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> Aerth Mobility Pvt Ltd</p>
+                                <!-- Description -->
+                                <p>A fully responsive multi-page website designed with a rich dark green theme and bold color accents to reflect the EV energy and sustainability identity. The site features a cinematic hero section, smooth scroll transitions, dedicated pages for Services, Service Centers, Skill Centers, and Partners. Typography and visual hierarchy were crafted to feel premium, modern, and mobility-forward.</p>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Right Column: Client Info -->
-                        <div style="padding: 2rem; display: flex; flex-direction: column; gap: 1rem; border-left: 1px solid rgba(255,255,255,0.06);">
-                            <!-- Header Badge + Meta -->
-                            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
-                                <span style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">CONSULTANCY SERVICE</span>
+                <!-- GUIDED WEALTHY - Card index 3 -->
+                <div class="project-card-deck-item" data-index="3" style="position: sticky; top: 244px; z-index: 13; margin-bottom: 6rem; width: 100%;">
+                    <div class="project-card-inner">
+                        <div class="project-card-grid">
+                            <!-- Left Column: Banner + Tech + CTA -->
+                            <div class="project-card-left">
+                                <!-- Website Screenshot Banner -->
+                                <div class="screenshot-container" style="border-radius: 14px; overflow: hidden; box-shadow: 0 6px 28px rgba(0,0,0,0.4);">
+                                    <img src="projects/guided-homepage.png" alt="mviz Technologies Homepage" style="width: 100%; display: block; object-fit: cover;">
+                                </div>
+                                <!-- Tech Stack Tags -->
+                                <div class="tech-stack-tags" style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">REACT</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">NODE.JS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CLOUD APIS</span>
+                                    <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.3rem 0.85rem; border-radius: 20px; font-size: 0.72rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); letter-spacing: 0.04em;">CONTACT FORM</span>
+                                </div>
+                                <!-- CTA Links -->
+                                <div class="cta-links" style="display: flex; flex-wrap: wrap; gap: 1.8rem; align-items: center; margin-top: auto;">
+                                    <a href="#contact" style="color: #FF6B6B; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">DISCUSS SIMILAR PROJECT <i class="fas fa-arrow-right" style="font-size: 0.7rem;"></i></a>
+                                    <a href="https://www.guidedwealthy.in" target="_blank" style="color: #fff; text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">VIEW LIVE SITE <i class="fas fa-external-link-alt" style="font-size: 0.7rem;"></i></a>
+                                </div>
                             </div>
-                            <!-- Client Icon -->
-                            <div style="margin-bottom: 0.4rem;">
-                                <img src="projects/guided-icon.png" alt="Guided Wealthy" style="width: 350px; height: 80px; object-fit: contain; filter: brightness(0) invert(1);">
+
+                            <!-- Right Column: Client Info -->
+                            <div class="project-card-right">
+                                <!-- Header Badge + Meta -->
+                                <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 0.2rem;">
+                                    <span class="badge" style="color: #FF6B6B; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.1em;">CONSULTANCY SERVICE</span>
+                                </div>
+                                <!-- Client Icon -->
+                                <div style="margin-bottom: 0.4rem;">
+                                    <img class="client-logo" src="projects/guided-icon.png" alt="Guided Wealthy">
+                                </div>
+                                <!-- Client Line -->
+                                <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> Guided Wealthy</p>
+                                <!-- Description -->
+                                <p>Led the web development for Guided Wealthy, translating complex investment services into a clean, modern digital presence. Implemented an intuitive navigational structure that effectively presents financial planning advisory services while adhering to strict fintech compliance aesthetics. The platform features fully responsive layouts, performance-optimized asset loading, and structured call-to-action elements designed to convert visitors into active advisory clients.</p>
                             </div>
-                            <!-- Client Line -->
-                            <p style="color: #ccc; font-size: 0.85rem; margin: 0;"><span style="color: #666;">&#8226;</span> <strong>Client:</strong> Guided Wealthy</p>
-                            <!-- Description -->
-                            <p style="color: #999; line-height: 1.7; font-size: 0.88rem; margin: 0;">Led the web development for Guided Wealthy, translating complex investment services into a clean, modern digital presence. Implemented an intuitive navigational structure that effectively presents financial planning advisory services while adhering to strict fintech compliance aesthetics. The platform features fully responsive layouts, performance-optimized asset loading, and structured call-to-action elements designed to convert visitors into active advisory clients.</p>
                         </div>
                     </div>
                 </div>
@@ -2125,177 +2444,173 @@
             UI for our mobile apps
         </p>
 
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem;">
+        <div class="mobile-apps-grid">
 
             <!-- App Card 1: EncryptBoard -->
-            <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6); height: 420px;">
-                <div style="display: grid; grid-template-columns: 45% 55%; height: 100%;">
+            <div class="mobile-app-card">
+                <div class="mobile-app-inner">
                     <!-- Screenshot -->
-                    <div style="padding: 1.2rem; display: flex; align-items: center; justify-content: center; background: #000;">
-                        <img src="apps/encryptboard.jpeg" alt="EncryptBoard App" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px;">
+                    <div class="mobile-app-screenshot">
+                        <img src="apps/encryptboard.jpeg" alt="EncryptBoard App">
                     </div>
                     <!-- Info -->
-                    <div style="padding: 1.8rem 1.8rem 1.8rem 0.5rem; display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; border-left: 1px solid rgba(255,255,255,0.06);">
-                        <span style="color: #00E5A0; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;">ANDROID APP</span>
-                        <h3 style="color: #fff; font-size: 1.4rem; font-weight: 700; margin: 0;">EncryptBoard</h3>
-                        <p style="color: #00E5A0; font-size: 0.82rem; font-style: italic; margin: 0;">Your words. Your rules. Encrypted.</p>
-                        <p style="color: #999; line-height: 1.6; font-size: 0.8rem; margin: 0;">
+                    <div class="mobile-app-info">
+                        <h3 class="mobile-app-title">EncryptBoard</h3>
+                        <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-top: -0.1rem;">
+                            <span class="mobile-app-badge" style="color: #00E5A0;">ANDROID APP</span>
+                            <span style="color: rgba(255,255,255,0.2); font-size: 0.7rem;">•</span>
+                            <p class="mobile-app-tagline" style="color: #00E5A0;">Your words. Your rules. Encrypted.</p>
+                        </div>
+                        <p class="mobile-app-description">
                             An encrypted keyboard that works with any messenger app to send and receive secure info. Replaces your default keyboard with a custom encrypted input layer your data stays protected before it even leaves your device.
                         </p>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-shield-alt" style="color: #00E5A0; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Encrypted keystrokes</span>
+                        <div class="mobile-app-features">
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-shield-alt" style="color: #00E5A0;"></i>
+                                <span>Encrypted keystrokes</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-keyboard" style="color: #00E5A0; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Works with any messenger</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-keyboard" style="color: #00E5A0;"></i>
+                                <span>Works with any messenger</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-lock" style="color: #00E5A0; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Passphrase-based encryption</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-lock" style="color: #00E5A0;"></i>
+                                <span>Passphrase-based encryption</span>
                             </div>
                         </div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem;">
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">KOTLIN</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">ANDROID SDK</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">ENCRYPTION</span>
+                        <div class="mobile-app-tech">
+                            <span class="mobile-app-tech-tag">KOTLIN</span>
+                            <span class="mobile-app-tech-tag">ANDROID SDK</span>
+                            <span class="mobile-app-tech-tag">ENCRYPTION</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- App Card 2: SchedAI -->
-            <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6); height: 420px;">
-                <div style="display: grid; grid-template-columns: 45% 55%; height: 100%;">
+            <div class="mobile-app-card">
+                <div class="mobile-app-inner">
                     <!-- Screenshot -->
-                    <div style="padding: 1.2rem; display: flex; align-items: center; justify-content: center; background: #000;">
-                        <img src="apps/schedai.jpeg" alt="SchedAI App" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px;">
+                    <div class="mobile-app-screenshot">
+                        <img src="apps/schedai.jpeg" alt="SchedAI App">
                     </div>
                     <!-- Info -->
-                    <div style="padding: 1.8rem 1.8rem 1.8rem 0.5rem; display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; border-left: 1px solid rgba(255,255,255,0.06);">
-                        <span style="color: #F59E0B; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;">ANDROID APP</span>
-                        <h3 style="color: #fff; font-size: 1.4rem; font-weight: 700; margin: 0;">SchedAI</h3>
-                        <p style="color: #F59E0B; font-size: 0.82rem; font-style: italic; margin: 0;">Smart scheduling. Smarter living.</p>
-                        <p style="color: #999; line-height: 1.6; font-size: 0.8rem; margin: 0;">
+                    <div class="mobile-app-info">
+                        <h3 class="mobile-app-title">SchedAI</h3>
+                        <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-top: -0.1rem;">
+                            <span class="mobile-app-badge" style="color: #F59E0B;">ANDROID APP</span>
+                            <span style="color: rgba(255,255,255,0.2); font-size: 0.7rem;">•</span>
+                            <p class="mobile-app-tagline" style="color: #F59E0B;">Smart scheduling. Smarter living.</p>
+                        </div>
+                        <p class="mobile-app-description">
                             An AI-powered task manager that helps you plan, prioritize, and stay on top of your day. SchedAI organizes your schedule with smart reminders, priority tags, and a clean interface — making productivity effortless.
                         </p>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-tasks" style="color: #F59E0B; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Smart task prioritization</span>
+                        <div class="mobile-app-features">
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-tasks" style="color: #F59E0B;"></i>
+                                <span>Smart task prioritization</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-calendar-check" style="color: #F59E0B; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Schedule & reminders</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-calendar-check" style="color: #F59E0B;"></i>
+                                <span>Schedule & reminders</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-brain" style="color: #F59E0B; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">AI-assisted planning</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-brain" style="color: #F59E0B;"></i>
+                                <span>AI-assisted planning</span>
                             </div>
                         </div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem;">
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">FLUTTER</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">SUPABASE</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">AI</span>
+                        <div class="mobile-app-tech">
+                            <span class="mobile-app-tech-tag">FLUTTER</span>
+                            <span class="mobile-app-tech-tag">SUPABASE</span>
+                            <span class="mobile-app-tech-tag">AI</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- App Card 3: MVSR College Portal (Dept Page) -->
-            <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6); height: 420px;">
-                <div style="display: grid; grid-template-columns: 45% 55%; height: 100%;">
+            <div class="mobile-app-card">
+                <div class="mobile-app-inner">
                     <!-- Screenshot -->
-                    <div style="padding: 1.2rem; display: flex; align-items: center; justify-content: center; background: #000;">
-                        <img src="apps/mvsr.jpeg" alt="MVSR College Portal" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px;">
+                    <div class="mobile-app-screenshot">
+                        <img src="apps/mvsr.jpeg" alt="MVSR College Portal">
                     </div>
                     <!-- Info -->
-                    <div style="padding: 1.8rem 1.8rem 1.8rem 0.5rem; display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; border-left: 1px solid rgba(255,255,255,0.06);">
-                        <span style="color: #60A5FA; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;">COLLEGE PORTAL</span>
-                        <h3 style="color: #fff; font-size: 1.4rem; font-weight: 700; margin: 0;">MVSR ECE</h3>
-                        <p style="color: #60A5FA; font-size: 0.82rem; font-style: italic; margin: 0;">Your entire department, in your pocket.</p>
-                        <p style="color: #999; line-height: 1.6; font-size: 0.8rem; margin: 0;">
+                    <div class="mobile-app-info">
+                        <h3 class="mobile-app-title">MVSR ECE</h3>
+                        <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-top: -0.1rem;">
+                            <span class="mobile-app-badge" style="color: #60A5FA;">COLLEGE PORTAL</span>
+                            <span style="color: rgba(255,255,255,0.2); font-size: 0.7rem;">•</span>
+                            <p class="mobile-app-tagline" style="color: #60A5FA;">Your entire department, in your pocket.</p>
+                        </div>
+                        <p class="mobile-app-description">
                             A college portal for the ECE department at MVSR Engineering College. Provides students with instant access to department info, faculty profiles, HOD details, syllabus, news, and an AI-powered student guide chatbot all in a clean, minimal interface.
                         </p>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-graduation-cap" style="color: #60A5FA; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Department & faculty profiles</span>
+                        <div class="mobile-app-features">
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-graduation-cap" style="color: #60A5FA;"></i>
+                                <span>Department & faculty profiles</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-robot" style="color: #60A5FA; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">AI chatbot with Groq integration</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-robot" style="color: #60A5FA;"></i>
+                                <span>AI chatbot with Groq integration</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-database" style="color: #60A5FA; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Real-time data via Supabase</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-database" style="color: #60A5FA;"></i>
+                                <span>Real-time data via Supabase</span>
                             </div>
                         </div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem;">
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">FLUTTER</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">SUPABASE</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">GROQ AI</span>
+                        <div class="mobile-app-tech">
+                            <span class="mobile-app-tech-tag">FLUTTER</span>
+                            <span class="mobile-app-tech-tag">SUPABASE</span>
+                            <span class="mobile-app-tech-tag">GROQ AI</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- App Card 4: STx Agency -->
-            <div style="background: #000; border: 1px solid rgba(255,255,255,0.06); border-radius: 22px; overflow: hidden; box-shadow: 0 12px 50px rgba(0,0,0,0.6); height: 420px;">
-                <div style="display: grid; grid-template-columns: 45% 55%; height: 100%;">
+            <div class="mobile-app-card">
+                <div class="mobile-app-inner">
                     <!-- Screenshot -->
-                    <div style="padding: 1.2rem; display: flex; align-items: center; justify-content: center; background: #000;">
-                        <img src="apps/Stx-agency.jpg" alt="STx Agency App" style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 16px;">
+                    <div class="mobile-app-screenshot">
+                        <img src="apps/Stx-agency.jpg" alt="STx Agency App">
                     </div>
                     <!-- Info -->
-                    <div style="padding: 1.8rem 1.8rem 1.8rem 0.5rem; display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; border-left: 1px solid rgba(255,255,255,0.06);">
-                        <span style="color: #A855F7; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.1em;">PORTFOLIO & SERVICES</span>
-                        <h3 style="color: #fff; font-size: 1.4rem; font-weight: 700; margin: 0;">STx Agency</h3>
-                        <p style="color: #A855F7; font-size: 0.82rem; font-style: italic; margin: 0;">My own portfolio cum service providing app.</p>
-                        <p style="color: #999; line-height: 1.6; font-size: 0.8rem; margin: 0;">
+                    <div class="mobile-app-info">
+                        <h3 class="mobile-app-title">STx Agency</h3>
+                        <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-top: -0.1rem;">
+                            <span class="mobile-app-badge" style="color: #A855F7;">PORTFOLIO & SERVICES</span>
+                            <span style="color: rgba(255,255,255,0.2); font-size: 0.7rem;">•</span>
+                            <p class="mobile-app-tagline" style="color: #A855F7;">My own portfolio cum service providing app.</p>
+                        </div>
+                        <p class="mobile-app-description">
                             A comprehensive portfolio and service agency app showcasing all professional skills and services offered. Features a clean, modern interface with service listings, project showcases, and contact integration.
                         </p>
-                        <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.2rem;">
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-briefcase" style="color: #A855F7; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Portfolio showcase</span>
+                        <div class="mobile-app-features">
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-briefcase" style="color: #A855F7;"></i>
+                                <span>Portfolio showcase</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-hands-helping" style="color: #A855F7; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Service listings</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-hands-helping" style="color: #A855F7;"></i>
+                                <span>Service listings</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem;">
-                                <i class="fas fa-palette" style="color: #A855F7; font-size: 0.75rem;"></i>
-                                <span style="color: #ccc; font-size: 0.76rem;">Modern UI/UX</span>
+                            <div class="mobile-app-feature-item">
+                                <i class="fas fa-palette" style="color: #A855F7;"></i>
+                                <span>Modern UI/UX</span>
                             </div>
                         </div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.3rem;">
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">REACT NATIVE</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">SUPABASE</span>
-                            <span style="background: rgba(255,255,255,0.06); color: #ccc; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.62rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">EXPO GO</span>
+                        <div class="mobile-app-tech">
+                            <span class="mobile-app-tech-tag">REACT NATIVE</span>
+                            <span class="mobile-app-tech-tag">SUPABASE</span>
+                            <span class="mobile-app-tech-tag">EXPO GO</span>
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-
-        <!-- Mobile responsive -->
-        <style>
-            @media (max-width: 768px) {
-                #mobile-apps > div:first-child {
-                    grid-template-columns: 1fr !important;
-                }
-                #mobile-apps > div:first-child > div {
-                    height: auto !important;
-                }
-                #mobile-apps > div:first-child > div > div:first-child > div {
-                    grid-template-columns: 1fr !important;
-                    height: auto !important;
-                }
-            }
-        </style>
     </section>
 
     <!-- Services Section -->
@@ -2719,6 +3034,65 @@
 
             return false;
         }
+
+        // 3D Sticky-Stacking Card Deck Effect Animation handler
+        function updateCardStack() {
+            const items = document.querySelectorAll('.project-card-deck-item');
+            const isDesktop = window.innerWidth >= 768;
+            
+            items.forEach((item) => {
+                const inner = item.querySelector('.project-card-inner');
+                if (!inner) return;
+                
+                if (!isDesktop) {
+                    // Mobile: static layout, no sticky stacking offsets, reset styles
+                    item.style.position = 'relative';
+                    item.style.top = 'auto';
+                    item.style.marginBottom = '2.5rem';
+                    inner.style.transform = 'none';
+                    inner.style.opacity = '1';
+                    return;
+                }
+                
+                // Desktop: Restore sticky and compute values
+                item.style.position = 'sticky';
+                const index = parseInt(item.getAttribute('data-index') || '0');
+                item.style.top = `${100 + index * 48}px`;
+                item.style.marginBottom = '6rem';
+                
+                const rect = item.getBoundingClientRect();
+                const stickyTop = 100 + index * 48; // Staggered calculation matching CSS top
+                
+                // Distance from current bounding top to its sticky top target
+                const distance = rect.top - stickyTop;
+                
+                // Range over which of the fold animation interpolates (75% of browser viewport)
+                const activeRange = window.innerHeight * 0.75;
+                
+                let progress = 1;
+                if (distance > activeRange) {
+                    progress = 0;
+                } else if (distance > 0) {
+                    progress = 1 - (distance / activeRange);
+                }
+                
+                // 3D transforms interpolation
+                const rotateX = (1 - progress) * 18; // Tilted backwards 18deg to flat 0deg
+                const scale = 0.88 + progress * 0.12; // Scaled down 0.88 to 1.0
+                const translateY = (1 - progress) * 160; // Slid down 160px to 0px
+                const opacity = 0.3 + progress * 0.7; // Faded 0.3 to 1.0
+                
+                inner.style.transform = `rotateX(${rotateX}deg) scale(${scale}) translateY(${translateY}px)`;
+                inner.style.opacity = opacity;
+            });
+        }
+
+        // Add corresponding scroll and load event listeners for the stacking cards
+        window.addEventListener('scroll', updateCardStack, { passive: true });
+        window.addEventListener('resize', updateCardStack);
+        window.addEventListener('load', updateCardStack);
+        // Execute immediately during script load
+        setTimeout(updateCardStack, 100);
 
         // Disable keyboard shortcuts and drag/drop
         document.addEventListener('keydown', function (e) {
