@@ -643,49 +643,31 @@
             .credentials-list { grid-template-columns: 1fr; }
         }
 
-        /* ---------- tabs ---------- */
-        .tabs-header {
+        /* ---------- portfolio group dividers (replaces tab switcher) ---------- */
+        .portfolio-group-label {
             display: flex;
+            align-items: center;
+            gap: .8rem;
+            padding: 1.1rem 0;
             border-bottom: 1px solid var(--border);
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            border-right: 1px solid var(--border);
-            padding: 1rem 1.6rem;
             font-family: 'JetBrains Mono', monospace;
-            font-size: .72rem;
+            font-size: .7rem;
             font-weight: 500;
             letter-spacing: .06em;
             text-transform: uppercase;
             color: var(--muted);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: .55rem;
-            transition: all .2s ease;
-            position: relative;
         }
 
-        .tab-btn:hover { color: var(--fg); }
+        .portfolio-group-label i { font-size: .78rem; }
 
-        .tab-btn.active {
-            color: var(--fg);
+        .portfolio-group-label .count {
+            margin-left: auto;
+            color: var(--faint);
         }
 
-        .tab-btn.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--fg);
+        .portfolio-group + .portfolio-group {
+            margin-top: 3.2rem;
         }
-
-        .tab-panel { display: none; }
-        .tab-panel.active { display: block; animation: riseIn .5s cubic-bezier(.16,1,.3,1); }
 
         /* ---------- project rows ---------- */
         .project-row {
@@ -790,16 +772,6 @@
             font-size: .88rem;
             color: var(--muted);
             line-height: 1.7;
-        }
-
-        /* slide-up reveal panel */
-        .project-reveal {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-reveal-inner {
-            transform: translateY(0);
         }
 
         .project-footer {
@@ -1318,7 +1290,7 @@
         <div class="container" style="padding: 0;">
             <div class="metrics-strip">
                 <div class="metric-item">
-                    <div class="metric-number">4+</div>
+                    <div class="metric-number">5+</div>
                     <div class="metric-label mono">Web Apps Designed</div>
                 </div>
                 <div class="metric-item">
@@ -1378,7 +1350,7 @@
         </div>
     </section>
 
-    <!-- Portfolio -->
+    <!-- Portfolio: web and mobile shown together on one screen, no tab switching -->
     <section class="fade-in-element" id="portfolio">
         <div class="container">
             <div class="section-head" style="border-bottom: none; padding-bottom: 1.6rem;">
@@ -1386,20 +1358,15 @@
                     <span class="eyebrow">Selected Work</span>
                     <h2 class="heading">Featured Projects</h2>
                 </div>
-                <p class="desc">A handpicked collection of custom web applications and mobile frameworks I have fully designed and engineered.</p>
+                <p class="desc">Every web application and mobile build I've designed and engineered, laid out end to end.</p>
             </div>
 
-            <div class="tabs-header">
-                <button class="tab-btn active" onclick="switchShowcaseTab(event, 'web-projects-panel')">
+            <!-- Web Applications -->
+            <div class="portfolio-group">
+                <div class="portfolio-group-label">
                     <i class="fas fa-laptop"></i> Web Applications
-                </button>
-                <button class="tab-btn" onclick="switchShowcaseTab(event, 'mobile-projects-panel')">
-                    <i class="fas fa-mobile-alt"></i> Mobile Applications
-                </button>
-            </div>
-
-            <!-- Web Projects -->
-            <div class="tab-panel active" id="web-projects-panel">
+                    <span class="count mono">05</span>
+                </div>
 
                 <div class="project-row">
                     <div class="project-index mono">01</div>
@@ -1533,10 +1500,47 @@
                     </div>
                 </div>
 
+                <div class="project-row">
+                    <div class="project-index mono">05</div>
+                    <div class="project-visual">
+                        <div class="screenshot-frame">
+                            <div class="browser-header">
+                                <span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span>
+                            </div>
+                            <div class="img-wrap">
+                                <img src="/projects/dtdigisol-homepage.png" alt="DT Digisol Website Frame" referrerpolicy="no-referrer">
+                                <div class="visual-hover-strip">
+                                    <span>dtdigisol.com</span>
+                                    <i class="fas fa-arrow-up-right-from-square"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-top">
+                            <h3 class="project-title">DT Digisol</h3>
+                            <span class="project-tag mono">Digital Agency</span>
+                        </div>
+                        <p class="project-desc">
+                            Corporate site for a digital solutions and IT services agency — service breakdowns, client case studies, and a structured inquiry funnel built to convert visiting leads into consultation calls.
+                        </p>
+                        <div class="project-footer">
+                            <div class="tech-stack-tags">
+                                <span>React</span><span>Node.js</span><span>Lead Capture</span><span>Optimized SEO</span>
+                            </div>
+                            <span class="client-line">DT Digisol Pvt Ltd</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Mobile Apps -->
-            <div class="tab-panel" id="mobile-projects-panel">
+            <!-- Mobile Applications -->
+            <div class="portfolio-group">
+                <div class="portfolio-group-label">
+                    <i class="fas fa-mobile-alt"></i> Mobile Applications
+                    <span class="count mono">04</span>
+                </div>
+
                 <div class="mobile-apps-grid">
 
                     <div class="mobile-app-card">
@@ -1795,15 +1799,6 @@
                 navItems?.classList.remove('active');
             });
         });
-
-        // Tabs
-        function switchShowcaseTab(e, panelId) {
-            e.preventDefault();
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            e.currentTarget.classList.add('active');
-            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-            document.getElementById(panelId)?.classList.add('active');
-        }
 
         // Fade-in on scroll
         const entranceObserver = new IntersectionObserver((entries) => {
