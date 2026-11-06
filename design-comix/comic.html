@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sanjay Anand — Full-Stack & Systems Engineer</title>
+<meta name="description" content="Sanjay Anand builds full-stack platforms, mobile apps and cloud automations. Portfolio drawn as a black & white manga.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;700;800&family=Reggae+One&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#fff;--i:#000;--b:4px}
+.inv{--p:#000;--i:#fff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:60px}
+body{background:var(--p);color:var(--i);font:400 1rem/1.55 'Hanken Grotesk',sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}img{display:block;width:100%;height:100%;object-fit:cover}
+::selection{background:var(--i);color:var(--p)}
+:focus-visible{outline:3px dashed var(--i);outline-offset:-6px}
+.ht{background:radial-gradient(var(--i) 1.2px,transparent 1.6px) 0 0/8px 8px}
+.sl{background:repeating-conic-gradient(from 0deg at 50% 50%,var(--i) 0 1deg,var(--p) 1deg 6deg)}
+/* full-bleed page: panels share borders, no outer gap */
+.pg{display:grid;grid-template-columns:repeat(12,1fr);border-top:var(--b) solid var(--i)}
+.pn{border:0 solid var(--i);border-width:0 var(--b) var(--b) 0;position:relative;overflow:hidden;padding:clamp(1rem,3vw,2.4rem);min-width:0}
+.pn:nth-child(n){margin:0}
+.c3{grid-column:span 3}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}
+.dk{background:var(--i);color:var(--p)}
+.ph{padding:0;background:var(--p);min-height:260px}
+.ph::before{content:attr(data-f);position:absolute;inset:0;display:grid;place-items:center;text-align:center;font:700 .8rem 'Courier Prime';padding:1rem;background:radial-gradient(var(--i) 1.2px,transparent 1.6px) 0 0/8px 8px;color:var(--i)}
+.ph::after{content:attr(data-f);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--p);border:3px solid var(--i);padding:.3rem .8rem;font:700 .8rem 'Courier Prime';white-space:nowrap}
+.ph img{position:absolute;inset:0;z-index:2;filter:grayscale(1) contrast(1.15);transition:transform .8s}
+.ph:hover img{transform:scale(1.05)}
+.ph:has(img.ok)::before,.ph:has(img.ok)::after{display:none}
+.cut{clip-path:polygon(0 0,100% 0,100% 88%,0 100%)}
+.cut2{clip-path:polygon(0 8%,100% 0,100% 100%,0 100%)}
+h1,h2,h3,.an{font-family:'Anton';font-weight:400;text-transform:uppercase;line-height:.95}
+.jp{font-family:'Reggae One'}
+.mono{font-family:'Courier Prime',monospace;font-weight:700}
+.btn{display:inline-block;border:3px solid var(--i);background:var(--i);color:var(--p);padding:.7rem 1.3rem;font:800 .9rem 'Hanken Grotesk';cursor:pointer;box-shadow:5px 5px 0 var(--i);outline:0;transition:.15s;box-shadow:5px 5px 0 var(--p),5px 5px 0 3px var(--i)}
+.btn:hover{transform:translate(-2px,-2px)}
+.btn.alt{background:var(--p);color:var(--i)}
+.nar{display:inline-block;background:var(--i);color:var(--p);padding:.1rem .7rem;font:700 .78rem 'Courier Prime';margin-bottom:.7rem}
+.dk .nar{background:var(--p);color:var(--i)}
+.bub{position:absolute;background:var(--p);color:var(--i);border:4px solid var(--i);border-radius:50%/60%;padding:.8rem 1.3rem;font:400 1.5rem/1 'Anton';text-align:center;z-index:5;animation:bob 3s ease-in-out infinite}
+.bub::after{content:'';position:absolute;left:22%;bottom:-22px;border:12px solid transparent;border-top:22px solid var(--i);border-bottom:0}
+@keyframes bob{50%{transform:translateY(-8px) rotate(2deg)}}
+.sfx{position:absolute;font:400 clamp(3rem,8vw,6rem)/1 'Reggae One';color:var(--p);-webkit-text-stroke:3px var(--i);z-index:5;transform:rotate(-8deg);text-shadow:5px 5px 0 var(--i);pointer-events:none}
+/* header */
+header{position:fixed;top:0;left:0;right:0;height:56px;z-index:50;background:var(--p);border-bottom:var(--b) solid var(--i);display:flex;align-items:center;padding:0 1rem;gap:1rem}
+.logo{font:400 1.3rem 'Anton';letter-spacing:.06em;display:flex;gap:.5rem;align-items:center}
+.logo i{background:var(--i);color:var(--p);width:32px;height:32px;display:grid;place-items:center;font:400 1rem 'Reggae One';font-style:normal;transform:rotate(-6deg)}
+nav{margin-left:auto;display:flex;gap:1rem}
+nav a{font:800 .82rem 'Hanken Grotesk';text-transform:uppercase;padding:.2rem 0;border-bottom:3px solid transparent}
+nav a:hover{border-color:var(--i)}
+.ib{width:36px;height:36px;border:3px solid var(--i);background:var(--p);color:var(--i);cursor:pointer;font-size:1rem}
+#bg{display:none}
+#pr{position:fixed;top:56px;left:0;height:4px;width:100%;background:var(--i);transform:scaleX(0);transform-origin:0;z-index:51}
+/* hero */
+.hero{margin-top:56px}
+.hero h1{font-size:clamp(4rem,13vw,10rem);letter-spacing:.01em}
+.hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:3px var(--p)}
+.hero .big{min-height:min(78vh,620px)}
+.hero .sl{position:absolute;inset:-40%;opacity:.18;animation:sp 60s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.hero .pn>*{position:relative}
+.hero .pn>.sl,.hero .pn>.sfx,.hero .pn>.bub{position:absolute}
+.st b{display:block;font:400 3.4rem/1 'Anton'}
+.mq{border-bottom:var(--b) solid var(--i);background:var(--i);color:var(--p);overflow:hidden}
+.mq div{display:flex;gap:2.5rem;width:max-content;padding:.6rem 0;font:400 1.5rem 'Anton';letter-spacing:.08em;animation:mq 24s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* chapters */
+.chh{display:flex;align-items:flex-end;gap:1.5rem;flex-wrap:wrap}
+.num{font:400 clamp(5rem,13vw,10rem)/.8 'Anton';color:transparent;-webkit-text-stroke:3px var(--i)}
+.dk .num{-webkit-text-stroke-color:var(--p)}
+.chh h2{font-size:clamp(2.4rem,6vw,4.6rem)}
+.chh p{max-width:46ch;opacity:.8;margin-top:.5rem}
+.tabs{display:flex;flex-wrap:wrap}
+.tab{flex:1;padding:.9rem;border:0 solid var(--i);border-width:0 var(--b) var(--b) 0;background:var(--p);color:var(--i);font:400 1.3rem 'Anton';text-transform:uppercase;cursor:pointer}
+.tab.on{background:var(--i);color:var(--p)}
+.wk{display:grid;grid-template-columns:repeat(3,1fr)}
+.card{border:0 solid var(--i);border-width:0 var(--b) var(--b) 0;display:flex;flex-direction:column;background:var(--p);animation:pop .5s backwards;animation-delay:calc(var(--n)*60ms)}
+@keyframes pop{from{opacity:0;transform:scale(.9) rotate(-2deg)}}
+.card .ph{height:230px;min-height:0;border-bottom:var(--b) solid var(--i)}
+.card .ph img{object-position:top}
+.card .no{position:absolute;top:0;left:0;z-index:4;background:var(--i);color:var(--p);padding:.1rem .8rem;font:400 1.4rem 'Anton'}
+.cb{padding:1.2rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.cb h3{font-size:1.7rem}
+.cb p{font-size:.92rem;opacity:.85}
+.tg{font:700 .7rem 'Courier Prime';border:2px solid var(--i);padding:0 .5rem;display:inline-block}
+.stk{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:auto}
+.stk span{font:700 .7rem 'Courier Prime';background:var(--i);color:var(--p);padding:0 .5rem}
+.cf{display:flex;justify-content:space-between;align-items:center;gap:.8rem;flex-wrap:wrap;border-top:3px dashed var(--i);padding-top:.8rem}
+.cf small{font:700 .72rem 'Courier Prime';opacity:.7}
+.cf .btn{padding:.4rem .8rem;font-size:.75rem;box-shadow:3px 3px 0 var(--p),3px 3px 0 3px var(--i)}
+.svc .pn{min-height:230px}
+.svc .kj{position:absolute;right:-.2rem;top:-1rem;font:400 8rem/1 'Reggae One';opacity:.14}
+.svc h3{font-size:1.7rem;margin:2.2rem 0 .6rem;position:relative}
+.svc p{position:relative;font-size:.93rem;opacity:.85}
+.ar h3{display:inline-block;background:var(--i);color:var(--p);padding:.1rem .7rem;font-size:1.2rem;margin-bottom:.9rem;transform:rotate(-2deg)}
+.dk .ar h3,.ar.dk h3{background:var(--p);color:var(--i)}
+.ar li{list-style:none;padding:.45rem 0;border-bottom:2px dotted currentColor;font-weight:800;display:flex;justify-content:space-between;transition:padding .2s}
+.ar li:hover{padding-left:.6rem}
+.ar li::after{content:'★';font-size:.7rem;opacity:.5}
+.fin{min-height:520px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:1rem}
+.fin h2{font-size:clamp(2.6rem,6vw,5rem)}
+.mail{font:700 clamp(.95rem,2.2vw,1.3rem) 'Courier Prime';border:3px dashed currentColor;padding:.8rem 1rem;word-break:break-all}
+.mail:hover{background:var(--p);color:var(--i)}
+footer{background:var(--i);color:var(--p);padding:1.2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font:700 .82rem 'Courier Prime'}
+footer .jp{font-size:1.8rem}
+#egg{background:none;border:0;color:var(--p);opacity:.35;font-size:1rem;cursor:pointer}
+#egg:hover{opacity:1}
+#md{position:fixed;inset:0;z-index:100;background:#000e;display:none;place-items:center;padding:1rem}
+#md.on{display:grid}
+#md div{max-width:min(900px,95vw);border:5px solid #fff;background:#000;color:#fff;position:relative}
+#md .ph{aspect-ratio:16/9;min-height:0;background:#000;color:#000}
+#md p{padding:.7rem 1rem;font:700 .85rem 'Courier Prime'}
+#md button{position:absolute;top:-18px;right:-18px;z-index:9;width:38px;height:38px;border:3px solid #fff;background:#000;color:#fff;font-size:1.1rem;cursor:pointer}
+#tt{position:fixed;bottom:1.2rem;left:50%;transform:translate(-50%,200%);background:var(--i);color:var(--p);padding:.5rem 1.2rem;font:700 .85rem 'Courier Prime';z-index:120;transition:transform .3s}
+#tt.on{transform:translate(-50%,0)}
+.rv{opacity:0;transform:translateY(24px) scale(.97)}
+.rv.in{opacity:1;transform:none;transition:.6s cubic-bezier(.2,1.2,.3,1)}
+@media(max-width:900px){nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--p);border-bottom:var(--b) solid var(--i);padding:1rem}nav.open{display:flex}#bg{display:block;margin-left:auto}.pg>.pn{grid-column:span 12!important}.wk{grid-template-columns:1fr}.hero .big{min-height:420px}}
+@media(min-width:901px) and (max-width:1100px){.wk{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+
+:root{--bd:#000;--g:#ececec}.inv{--bd:#fff;--g:#1b1b1b}
+body{font-size:1.06rem;line-height:1.65}
+p,li{opacity:1!important}
+.dk{--p:#000;--i:#fff;background:#000;color:#fff;background-image:none!important}
+.inv .dk{--p:#fff;--i:#000;background:#fff;color:#000}
+.dk .nar{background:var(--i);color:var(--p)}.dk .num,.hero h1 em{-webkit-text-stroke-color:var(--i)}
+.ar.dk h3,.dk .ar h3{background:var(--i);color:var(--p)}
+.gy{background:var(--g)}.ht,.pn.ht{background:none}
+.pg{gap:14px;padding:14px 0;border:0}
+.pn{border:var(--b) solid var(--bd)}
+header,.mq{border-color:var(--bd)}
+.hero{margin-top:56px}.hero .sl{opacity:.05}
+.svc .kj{opacity:.07}
+.ph::before{background:repeating-linear-gradient(45deg,var(--g) 0 10px,var(--p) 10px 20px)}
+.btn{background:var(--p);color:var(--i);border:3px solid var(--i);box-shadow:5px 5px 0 var(--i);margin:0 .6rem .7rem 0;padding:.75rem 1.3rem}
+.btn:not(.alt){background:var(--i);color:var(--p);box-shadow:5px 5px 0 #777}
+.btn:hover{transform:translate(-2px,-2px)}.btn:active{transform:translate(3px,3px);box-shadow:none}
+.cf .btn{box-shadow:3px 3px 0 #777;margin:0}
+.mail:hover{background:var(--i);color:var(--p)}
+.tabs{gap:12px;padding:14px;flex-wrap:wrap}
+.tab{border:var(--b) solid var(--bd);box-shadow:4px 4px 0 var(--bd);padding:.7rem 1rem}
+.tab.on{background:var(--i);color:var(--p);box-shadow:none;transform:translate(3px,3px)}
+.wk{gap:14px;padding:0 14px 14px}
+.card{border:var(--b) solid var(--bd)}
+.card .ph{border:0;border-bottom:var(--b) solid var(--bd)}
+.tg,.stk span,.cf small,.mono{font-size:.8rem}
+.fld{display:block;width:100%;border:3px solid var(--i);background:var(--p);color:var(--i);padding:.65rem .8rem;margin:.7rem 0;font:700 .95rem 'Courier Prime',monospace;border-radius:0}
+.out{border:3px dashed var(--i);padding:.8rem;margin-top:.5rem;white-space:pre-wrap;word-break:break-all;font:700 .85rem 'Courier Prime',monospace;min-height:3.4rem}
+.blk{border:3px solid var(--i);padding:.6rem .8rem;margin-top:.6rem;display:grid;gap:.1rem;background:var(--p)}
+.blk b{font:400 1.2rem 'Anton';letter-spacing:.05em}.blk small{font:700 .75rem 'Courier Prime'}
+.est{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}
+.chk{display:flex;gap:.6rem;align-items:center;font-weight:800;padding:.3rem 0}.chk input{width:20px;height:20px;accent-color:#000}
+.res{border:var(--b) solid var(--i);background:var(--p);padding:1.6rem;text-align:center}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+details{border:3px solid var(--i);background:var(--p);padding:.8rem 1rem}summary{cursor:pointer;font-weight:800}details p{margin-top:.6rem}
+.bf{display:grid;grid-template-columns:repeat(3,1fr);gap:0 14px;margin-bottom:.6rem}.bf>:first-child{grid-column:span 1}
+@media(max-width:900px){.est,.faq,.bf{grid-template-columns:1fr}}
+
+.mq div{gap:1.8rem;font-size:1.9rem}.mq div span:nth-child(even){opacity:.5}
+.mq.alt{background:var(--p);color:var(--i);border-block:var(--b) solid var(--bd)}.mq.rev div{animation-direction:reverse}
+.drift{overflow:hidden;border-block:var(--b) solid var(--bd);background:var(--p);margin:14px 0}
+.drift span{display:block;width:max-content;margin-left:-12vw;white-space:nowrap;font:400 clamp(4.5rem,13vw,10rem)/1.05 'Anton';color:transparent;-webkit-text-stroke:2px var(--i);will-change:transform}
+.lt{display:inline-block;animation:drop .7s cubic-bezier(.2,1.5,.4,1) backwards;animation-delay:calc(var(--k)*80ms);transition:transform .2s}.lt:hover{transform:translateY(-12px) rotate(-6deg)}
+@keyframes drop{from{opacity:0;transform:translateY(-70px) rotate(14deg) scale(1.5)}}
+.pn:not(.ph):hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--bd)}
+.pn{transition:transform .2s,box-shadow .2s}
+.kz{min-height:300px}.kz b{display:block;font-size:9rem;line-height:1;margin-bottom:.4rem;transition:transform .4s}.kz:hover b{transform:rotate(-8deg) scale(1.12)}
+.hero .big{box-shadow:none}
+.bf fieldset{border:0;margin:.6rem 0}.bf legend{font:400 1.3rem 'Anton';text-transform:uppercase;margin-bottom:.6rem;letter-spacing:.04em}
+.chip{position:relative;display:inline-block}.chip input{position:absolute;opacity:0}
+.chip span{display:inline-block;border:3px solid var(--i);background:var(--p);padding:.5rem 1rem;font-weight:800;cursor:pointer;box-shadow:3px 3px 0 var(--i);margin:0 .6rem .8rem 0;transition:.15s}
+.chip:hover span{transform:translate(-2px,-2px)}
+.chip input:checked+span{background:var(--i);color:var(--p);box-shadow:none;transform:translate(3px,3px)}
+.chip input:focus-visible+span{outline:3px dashed var(--i);outline-offset:3px}
+.bf{display:block}
+</style>
+</head>
+<body>
+<div id="pr"></div>
+<header>
+ <a href="#top" class="logo"><i>サ</i>SANJAY ANAND</a>
+ <nav id="nav"><a href="#about">序章 Prologue</a><a href="#works">作品 Case files</a><a href="#services">技 Techniques</a><a href="#stack">道具 Toolbox</a><a href="#brief">依頼 Commission</a><a href="#contact">Contact</a></nav>
+ <button class="ib" id="th" aria-label="Invert colours">◐</button>
+ <button class="ib" id="bg" aria-label="Menu">☰</button>
+</header>
+
+<main id="top">
+<!-- COVER -->
+<section class="pg hero">
+ <div class="pn c7 dk big cut" style="display:flex;flex-direction:column;justify-content:flex-end">
+  <div class="sl"></div>
+  <span class="nar">第一巻 · VOLUME 01</span>
+  <h1>Sanjay<br><em>Anand</em></h1>
+  <p class="mono" style="margin-top:.8rem">Full-stack & systems engineer. Software that ships.</p>
+  <div class="sfx" style="right:1rem;top:1rem">ドン!</div>
+ </div>
+ <div class="pn c5 ph big" data-f="01-cover.webp"><img src="01-cover.webp" alt="Manga cover: Sanjay at his desk" onload="this.classList.add('ok')" onerror="this.remove()"><div class="bub" style="left:6%;top:8%">SHIP<br>IT!</div></div>
+ <div class="pn c8 ht"><span class="nar">Meanwhile, at the desk…</span><h2 style="font-size:clamp(1.8rem,4vw,3.2rem)">I build platforms, apps and automations that read like a story: <u style="text-decoration:none;background:var(--i);color:var(--p);padding:0 .3rem">clear, fast</u> and impossible to put down.</h2><p style="max-width:56ch;margin:1rem 0 1.4rem;opacity:.85">Full-stack web platforms, native-feeling mobile apps and secure cloud automations, designed to solve real technical challenges for real teams.</p><a href="#works" class="btn">See the case files ↓</a> <a href="#contact" class="btn alt">Let's connect</a></div>
+ <div class="pn c4 gy st"><b data-n="10" data-s="+">0</b><span class="mono">PROJECTS SHIPPED</span><br><br><b data-n="4" data-s="+">0</b><span class="mono">FRAMEWORKS</span><br><br><b>OPEN</b><span class="mono">FOR NEW WORK</span></div>
+</section>
+<div class="mq" aria-hidden="true"><div id="mq" data-w="0"></div></div>
+
+<div class="drift" data-s="-.7" aria-hidden="true"><span>信条 SHINJŌ · BELIEF · 信条 SHINJŌ · BELIEF</span></div>
+<section id="creed"><div class="pg">
+ <div class="pn c12 chh rv"><div class="num">00</div><div><h2>信条 Creed</h2><p>Shinjō means "belief". Four words I build by.</p></div></div>
+ <div class="pn c3 rv kz"><b class="jp">作</b><span class="nar">Tsukuru · to make</span><p>I build from scratch, with clean structure from the first line.</p></div>
+ <div class="pn c3 gy rv kz"><b class="jp">守</b><span class="nar">Mamoru · to protect</span><p>Security and privacy are built in, never bolted on.</p></div>
+ <div class="pn c3 dk rv kz"><b class="jp">繋</b><span class="nar">Tsunagu · to connect</span><p>APIs, teams and people joined into one working system.</p></div>
+ <div class="pn c3 rv kz"><b class="jp">届</b><span class="nar">Todokeru · to deliver</span><p>Shipped, live and supported. Software that actually arrives.</p></div>
+</div></section>
+<!-- 01 -->
+<section id="about">
+ <div class="pg">
+  <div class="pn c12 chh rv"><div class="num">01</div><div><h2>序章 Prologue</h2><p>Jo-shō, the opening chapter. Who is behind the keyboard, and what is being trained next.</p></div></div>
+  <div class="pn c4 ph" data-f="02-origin.webp"><img src="02-origin.webp" alt="Origin panel" onload="this.classList.add('ok')" onerror="this.remove()"></div>
+  <div class="pn c4 rv"><span class="nar">Developer · solutions architect</span><h3 style="font-size:2.3rem;margin-bottom:1rem">Clean structure, in every build.</h3><p style="margin-bottom:.8rem">Hi, I'm Sanjay, a developer who specialises in custom tools, enterprise platforms, native apps and automation systems.</p><p>Structure comes first in everything I make. That is what gives each project room to scale, stay fast and feel effortless to use.</p></div>
+  <div class="pn c4 dk rv"><div class="jp" style="font-size:5rem;line-height:1">爪</div><span class="nar">Training arc</span><h3 style="font-size:2rem;margin:.4rem 0">Java Developer</h3><p style="opacity:.85">Building solid fundamentals for scalable, secure corporate backends: multi-threaded systems and enterprise foundations.</p><div style="margin-top:1.2rem;height:14px;border:2px solid var(--p)"><div id="lv" style="height:100%;width:0;background:repeating-linear-gradient(45deg,var(--p) 0 8px,var(--i) 8px 16px);transition:width 1.6s"></div></div><small class="mono">POWER LEVEL · RISING</small></div>
+  <div class="pn c12 ph" style="min-height:300px" data-f="03-training.webp"><img src="03-training.webp" alt="Training arc" onload="this.classList.add('ok')" onerror="this.remove()"><div class="sfx" style="left:1.5rem;bottom:1rem;z-index:6">ゴゴゴ</div></div>
+ </div>
+</section>
+
+<!-- 02 -->
+<section id="works">
+ <div class="pg">
+  <div class="pn c5 chh rv"><div class="num">02</div><div><h2>作品 Case files</h2><p>Sakuhin means "works". Every web and mobile build, laid out panel by panel.</p></div></div>
+  <div class="pn c7 ph" style="min-height:220px" data-f="04-missions.webp"><img src="04-missions.webp" alt="Mission board" onload="this.classList.add('ok')" onerror="this.remove()"></div>
+ </div>
+ <div class="tabs" id="tabs"><button class="tab on" data-t="web">Web apps · 06</button><button class="tab" data-t="app">Mobile apps · 04</button><button class="tab" data-t="os">Open source · 02</button></div>
+ <div class="wk" id="wk"></div>
+</section>
+
+<div class="mq alt rev" data-w="1" aria-hidden="true"><div></div></div>
+<div class="drift" data-s="-.6" aria-hidden="true"><span>技 WAZA · SKILL · 技 WAZA · SKILL</span></div>
+<!-- 03 -->
+<section id="services">
+ <div class="pg"><div class="pn c12 chh gy rv"><div class="num">03</div><div><h2>技 Techniques</h2><p>Waza means "skill". Clean engineering with modern front-end craft, aimed at products that last.</p></div></div></div>
+ <div class="pg svc" id="svc"></div>
+</section>
+
+<!-- 04 -->
+<section id="stack">
+ <div class="pg">
+  <div class="pn c5 chh rv"><div class="num">04</div><div><h2>道具 Toolbox</h2><p>Dōgu means "tools". The languages, services and engines behind production builds.</p></div></div>
+  <div class="pn c7 ph" style="min-height:220px" data-f="05-arsenal.webp"><img src="05-arsenal.webp" alt="Arsenal" onload="this.classList.add('ok')" onerror="this.remove()"></div>
+ </div>
+ <div class="pg" id="ars"></div>
+</section>
+
+<div class="drift" data-s=".6" aria-hidden="true"><span>道 MICHI · THE PATH · 道 MICHI · THE PATH</span></div>
+<!-- PROCESS -->
+<section id="process"><div class="pg">
+ <div class="pn c12 chh rv"><div class="num">05</div><div><h2>道 The way</h2><p>Michi means "path". Four beats, no surprises.</p></div></div>
+ <div class="pn c3 rv"><div class="an" style="font-size:3.5rem">01</div><h3>Brief</h3><p>We talk goals, users and limits. You get a one-page plan.</p></div>
+ <div class="pn c3 gy rv"><div class="an" style="font-size:3.5rem">02</div><h3>Blueprint</h3><p>Structure, data model and screens first, so the build stays clean.</p></div>
+ <div class="pn c3 rv"><div class="an" style="font-size:3.5rem">03</div><h3>Build</h3><p>Weekly working demos. You see real progress, not promises.</p></div>
+ <div class="pn c3 gy rv"><div class="an" style="font-size:3.5rem">04</div><h3>Ship</h3><p>Deploy, monitor and hand over, with support after launch.</p></div>
+ <div class="pn c12 rv"><h3 style="margin-bottom:1rem">Questions, answered</h3><div class="faq">
+  <details><summary>Do you work with startups and small teams?</summary><p>Yes. Most of my work is for small companies that need a full product without a full department.</p></details>
+  <details><summary>Can you take over an existing codebase?</summary><p>Yes. I audit it first, then fix or extend it without a risky rewrite.</p></details>
+  <details><summary>Which stack will you use?</summary><p>Whatever fits: React, Node.js, Flutter, Supabase or Firebase. I pick for maintainability.</p></details>
+  <details><summary>How do we start?</summary><p>Use the brief builder below. It opens an email with your details filled in.</p></details></div></div>
+</div></section>
+
+<!-- BRIEF -->
+<section id="brief"><div class="pg">
+ <div class="pn c12 chh rv"><div class="num">06</div><div><h2>依頼 Commission</h2><p>Irai means "request". Pick what you need and your email app opens with a ready brief.</p></div></div>
+ <div class="pn c12 gy rv"><div class="bf"><input class="fld" id="bN" placeholder="Your name" aria-label="Name">
+<fieldset><legend>What do you need?</legend><label class="chip"><input type="checkbox" name="n" value="Website"><span>Website</span></label><label class="chip"><input type="checkbox" name="n" value="Mobile app"><span>Mobile app</span></label><label class="chip"><input type="checkbox" name="n" value="Automation"><span>Automation</span></label><label class="chip"><input type="checkbox" name="n" value="SaaS platform"><span>SaaS platform</span></label><label class="chip"><input type="checkbox" name="n" value="AI feature"><span>AI feature</span></label><label class="chip"><input type="checkbox" name="n" value="Redesign"><span>Redesign</span></label></fieldset>
+<fieldset><legend>Budget</legend><label class="chip"><input type="radio" name="b" value="₹0–5k"><span>₹0 – 5k</span></label><label class="chip"><input type="radio" name="b" value="₹5–10k"><span>₹5 – 10k</span></label><label class="chip"><input type="radio" name="b" value="₹10–30k"><span>₹10 – 30k</span></label><label class="chip"><input type="radio" name="b" value="₹30–60k"><span>₹30 – 60k</span></label></fieldset>
+<fieldset><legend>Timeline</legend><label class="chip"><input type="radio" name="t" value="ASAP"><span>ASAP</span></label><label class="chip"><input type="radio" name="t" value="Within 1 month"><span>1 month</span></label><label class="chip"><input type="radio" name="t" value="1–3 months"><span>1–3 months</span></label><label class="chip"><input type="radio" name="t" value="Flexible"><span>Flexible</span></label></fieldset>
+<textarea class="fld" id="bM" rows="4" placeholder="Tell me about the project" aria-label="Message"></textarea></div><button class="btn" id="bGo" type="button">Open my brief in email ↗</button></div>
+</div></section>
+
+<div class="mq rev" data-w="0" aria-hidden="true"><div></div></div>
+<!-- contact -->
+<section id="contact" class="pg">
+ <div class="pn c5 ph" style="min-height:520px" data-f="06-finale.webp"><img src="06-finale.webp" alt="To be continued" onload="this.classList.add('ok')" onerror="this.remove()"><div class="sfx" style="right:1rem;top:1rem;font-size:7rem">完?</div></div>
+ <div class="pn c7 dk fin"><span class="nar">縁 En · bond, fate</span><h2>Let's build something together.</h2><p style="max-width:46ch;opacity:.85">Got a full-stack app, a mobile idea or a back-office automation that needs engineering? Send it over and let's build a system that scales.</p><a class="mail" href="mailto:sanjayanand0509@gmail.com?subject=Project%20Inquiry">sanjayanand0509@gmail.com</a><div><a class="btn alt" href="mailto:sanjayanand0509@gmail.com?subject=Project%20Inquiry">Send a mail</a> <button class="btn alt" id="cp" type="button">Copy email</button></div></div>
+</section>
+</main>
+<footer><span class="jp">完</span><span>© <span id="yr">2026</span> Sanjay Anand · Drawn in ink, built in code.</span><span><button id="egg" aria-label="Secret">✦</button> <a href="#top">Back to cover ↑</a></span></footer>
+
+<div id="md" role="dialog" aria-label="Secret panel"><div><button id="x" aria-label="Close">✕</button><div class="ph" data-f="07-easter-ash-greninja.webp"><img src="07-easter-ash-greninja.webp" alt="Ash-Greninja comic strip" onload="this.classList.add('ok')" onerror="this.remove()"></div><p>SECRET PANEL UNLOCKED · 忍 — Gotta ship 'em all.</p></div></div>
+<div id="tt" role="status">Email copied!</div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const GP='https://play.google.com/store/apps/details?id=';
+const P=[
+['web','Last Armour','Gaming portal','An immersive tactical landing page for a dark military strategy game: HUD-style contrast, cinematic media sections and a layout tuned for quick engagement.',['HTML5','CSS3','Airtable CMS'],'Last Armour Pvt Ltd','https://lastarmourgame.com','Visit website','../projects/lastarmorgame.webp'],
+['web','mviz Technologies','Enterprise','A bold, dark enterprise site showcasing digital infrastructure and automation work, with a cinematic hero and dedicated Services, Projects and About pages.',['React','Node.js','Cloud APIs'],'mviz Technologies Pvt Ltd','https://mvizindia.com','Visit website','../projects/mviz-homepage.webp'],
+['web','Cosmiq Consultancy','Booking','Official portal for a premium Vastu consulting firm: elegant branding, scheduler links and an intuitive booking flow.',['React','Custom CMS','Booking API'],'Cosmiq Consultancy Pvt Ltd','https://cosmiqconsulting.com','Visit website','../projects/cosmiq-homepage.webp'],
+['web','Aerth Mobility','EV charging','A multi-page corporate site with a sustainability look for an EV charging provider: interactive maps, service network, careers and contact points.',['HTML5','CSS3','Smooth scroll'],'Aerth Mobility Pvt Ltd','https://aerth-mobility.com','Visit website','../projects/aerth-homepage.webp'],
+['web','Guided Wealthy','Fintech','Complex investment frameworks turned into a clean corporate structure built for conversion: strict grids, compliant interfaces and secure lead forms.',['React','SPA','Secure CTAs'],'Guided Wealthy Financial','https://guidedwealthy.in','Visit website','../projects/guided-homepage.webp'],
+['web','DT Digisol','Digital agency','Corporate site for an IT services agency: service breakdowns, case studies and a structured inquiry funnel that turns leads into consultation calls.',['React','Node.js','Lead capture'],'DT Digisol Pvt Ltd','https://dtdigisol.com','Visit website','../projects/dtdigisol-homepage.webp'],
+['os','STrakvu','Open source','A developer activity timeline that unifies GitHub commits, IDE sessions and AI prompt logs into one visual history, with streaks and a per-day work log.',['Next.js','Tailwind','GitHub API','WakaTime'],'Personal · Open source','https://strakvu.vercel.app','Visit website','../Strakvu/strakvu-dashboard.webp'],
+['app','SchedAI','AI','A smart agenda organiser powered by LLMs. It parses transcripts, captures action items and syncs them to calendar blocks automatically.',['Flutter','LLM','Calendar API'],'Gen-AI companion',GP+'com.singularitysoftware.schedai.sched_ai','Get it on Google Play','../app-imgs/schedai/schedai1.webp'],
+['os','EncryptBoard','Security','A cryptographic keyboard that auto-encrypts outgoing input for secure mobile messaging, with no side boards required.',['Kotlin','AES-GCM','Zero logging'],'Security utility',GP+'com.singularitysoftware.encryptboard','Get it on Google Play','../app-imgs/encryptboard/encryptboard1.webp'],
+['app','MVSR College Log','Admin','A university resource manager that keeps department feeds, homework, calendars and student metrics in one interface.',['Flutter','Firebase','Push alerts'],'Academic admin',GP+'com.mvsr.mvsr_ece','Get it on Google Play','../app-imgs/mvsrece/mvsrece1.webp'],
+['app','Raskamon','Wellness','A mental wellbeing app built with React Native (Expo), with a Supabase backend and Google sign-in for secure, personal onboarding.',['React Native','Expo','Supabase'],'Mental wellness · Beta','mailto:sanjayanand0509@gmail.com?subject=Raskamon%20Beta%20Access','Beta · request access','../app-imgs/raskamon/raskamon1.webp'],
+['app','STx Agency','In dev','An immersive showcase app for creative solutions, with dynamic loading screens and modular layouts.',['Mobile','Micro-interactions'],'Creative panel','','','../app-imgs/stx/Stx-agency.webp']];
+const SV=[['Mobile foundations','Cross-platform iOS and Android apps built on Flutter or React Native.','端'],['Website design','Pixel-perfect, high-converting sites with bold layouts and refined type.','美'],['Full-stack development','Fast, reliable products in React, Node.js and Flutter, from concept to shipped build.','技'],['SaaS architecture','Scalable cloud apps with auth gates, relational models and secure server logic.','雲'],['Custom website themes','Bespoke visual systems and micro-interactions that never look like a template.','型'],['Artificial intelligence','Conversational and predictive models, automation scripts and smart agents.','知']];
+const AR={Frontend:['React','Flutter','Vite','Kotlin'],Backend:['Node.js','Firebase','Python','Supabase'],'Dev tools':['GitHub','VS Code','Vercel','Android Studio'],Workflows:['n8n','Docker','Unity 3D','Blender']};
+const W=[['作る MAKE','守る PROTECT','繋ぐ CONNECT','届ける DELIVER','動く MOVE','学ぶ LEARN'],['速い FAST','強い STRONG','美しい BEAUTIFUL','簡単 SIMPLE','本物 GENUINE','挑戦 CHALLENGE']];
+$$('[data-w]').forEach(e=>{const h=W[+e.dataset.w].map(x=>`<span>${x}</span><span>✦</span>`).join('');(e.dataset.w==='0'&&e.id?e:e.firstElementChild).innerHTML=h+h+h+h});
+$$('.mq:not(.alt) > div:empty').forEach(d=>{const h=W[0].map(x=>`<span>${x}</span><span>✦</span>`).join('');d.innerHTML=h+h+h+h});
+(()=>{let i=0;const sp=n=>[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();[...c.textContent].forEach(ch=>{const t=document.createElement('span');t.className='lt';t.textContent=ch;t.style.setProperty('--k',i++);f.appendChild(t)});c.replaceWith(f)}else if(c.tagName!=='BR')sp(c)});sp($('.hero h1'))})();
+const dr=()=>$$('.drift').forEach(d=>{d.firstElementChild.style.transform=`translateX(${(d.getBoundingClientRect().top-innerHeight/2)*(+d.dataset.s)}px)`});addEventListener('scroll',dr,{passive:true});dr();
+$('#svc').innerHTML=SV.map((s,i)=>`<div class="pn c4 ${i%2?'gy':''} rv" style="--d:${i}"><span class="kj">${s[2]}</span><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('');
+$('#ars').innerHTML=Object.entries(AR).map(([k,v],i)=>`<div class="pn c3 ar ${i%2?'gy':''} rv"><h3>${k}</h3><ul>${v.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+function show(t){$$('.tab').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+ $('#wk').innerHTML=P.filter(p=>p[0]===t).map((p,n)=>{const[,T,tag,d,s,c,u,l,im]=p;
+ const b=u?`<a class="btn" href="${u}" target="_blank" rel="noopener">${l}</a>`:'<span class="tg">Coming soon</span>';
+ return `<article class="card" style="--n:${n}"><div class="pn ph" data-f="${im}"><span class="no">${String(n+1).padStart(2,'0')}</span><img src="${im}" alt="${T} preview" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()"></div><div class="cb"><div style="display:flex;justify-content:space-between;gap:.5rem;align-items:flex-start"><h3>${T}</h3><span class="tg">${tag}</span></div><p>${d}</p><div class="stk">${s.map(x=>`<span>${x}</span>`).join('')}</div><div class="cf"><small>${c}</small>${b}</div></div></article>`}).join('')}
+$('#tabs').onclick=e=>{const b=e.target.closest('.tab');if(b)show(b.dataset.t)};show('web');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);
+ const n=e.target.querySelectorAll('[data-n]');n.forEach(n=>{const end=+n.dataset.n,t0=performance.now(),f=t=>{const p=Math.min((t-t0)/1200,1);n.textContent=Math.round(end*(1-Math.pow(1-p,3)))+n.dataset.s;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)});
+ if(e.target.querySelector('#lv'))$('#lv').style.width='68%'}),{threshold:.1});
+$$('.rv,.st').forEach(el=>io.observe(el));
+addEventListener('scroll',()=>{const h=document.documentElement;$('#pr').style.transform=`scaleX(${scrollY/(h.scrollHeight-innerHeight||1)})`},{passive:true});
+$('#bg').onclick=()=>$('#nav').classList.toggle('open');$$('nav a').forEach(a=>a.onclick=()=>$('#nav').classList.remove('open'));
+try{if(localStorage.getItem('sx-inv')==='1')document.body.classList.add('inv')}catch(e){}
+$('#th').onclick=()=>{const v=document.body.classList.toggle('inv');try{localStorage.setItem('sx-inv',v?1:0)}catch(e){}};
+const md=$('#md'),open=()=>md.classList.add('on'),close=()=>md.classList.remove('on');
+$('#egg').onclick=open;$('#x').onclick=close;md.onclick=e=>{if(e.target===md)close()};
+addEventListener('keydown',e=>{if(e.key==='Escape')close();if(e.key.toLowerCase()==='g'&&!e.ctrlKey&&!e.metaKey)open()});
+$('#cp').onclick=()=>{const t=$('#tt'),ok=()=>{t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)};
+ (navigator.clipboard?navigator.clipboard.writeText('sanjayanand0509@gmail.com'):Promise.reject()).then(ok,ok)};
+
+$('#bGo').onclick=()=>{const v=n=>$$('input[name='+n+']:checked').map(x=>x.value).join(', ')||'-';location.href='mailto:sanjayanand0509@gmail.com?subject='+encodeURIComponent('Project brief')+'&body='+encodeURIComponent('Name: '+$('#bN').value+'\nNeeds: '+v('n')+'\nBudget: '+v('b')+'\nTimeline: '+v('t')+'\n\n'+$('#bM').value)};
+$('#yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

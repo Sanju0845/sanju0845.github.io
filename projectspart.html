@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STX — Selected Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* STX PROJECT LAB — self-contained section */
+#portfolio {
+  --bg:#08070b; --card:#121016; --card2:#17141c;
+  --line:rgba(240,224,200,.1); --line-hot:rgba(240,170,90,.55);
+  --text:#f4efe8; --muted:#9b938c; --faint:#6b6560;
+  --amber:#f0a35c; --amber-hot:#ffbe7a; --blue:#7d9bff; --violet:#b48aff; --green:#7fe0a8;
+  position:relative; isolation:isolate; overflow:hidden; padding:clamp(2.5rem,5vw,5rem) 0;
+  background:var(--bg); color:var(--text);
+  font-family:Manrope,system-ui,sans-serif;
+}
+#portfolio * { box-sizing:border-box; }
+#portfolio button, #portfolio a { font:inherit; }
+#portfolio button { color:inherit; }
+/* ambient glow field instead of a plain grid */
+#portfolio .pf-amb { position:absolute; inset:0; z-index:-1; pointer-events:none; overflow:hidden; }
+#portfolio .pf-amb i { position:absolute; border-radius:50%; filter:blur(90px); }
+#portfolio .pf-amb i:nth-child(1) { width:44rem; height:44rem; right:-14rem; top:-16rem; background:rgba(84,74,220,.16); }
+#portfolio .pf-amb i:nth-child(2) { width:34rem; height:34rem; left:-10rem; bottom:-14rem; background:rgba(224,138,58,.09); }
+#portfolio .pf-amb i:nth-child(3) { width:26rem; height:26rem; left:38%; top:44%; background:rgba(158,74,220,.07); }
+#portfolio .pf-amb:after { content:""; position:absolute; inset:0; background:radial-gradient(ellipse 90% 70% at 50% 45%,transparent 40%,rgba(4,3,8,.55)); }
+
+#portfolio .pf-wrap { position:relative; width:min(1440px,100%); margin:auto; padding:0 clamp(1rem,3.2vw,3rem); display:grid; grid-template-columns:46px minmax(250px,330px) minmax(0,1fr); gap:clamp(.7rem,1.3vw,1.2rem); align-items:stretch; }
+
+/* left icon rail */
+#portfolio .pf-rail { display:flex; flex-direction:column; align-items:center; gap:.55rem; padding:.65rem .35rem; background:linear-gradient(180deg,rgba(255,244,230,.05),rgba(255,244,230,.012)); border:1px solid var(--line); border-radius:14px; min-height:660px; }
+#portfolio .pf-rail button { width:34px; height:34px; display:grid; place-items:center; border:1px solid transparent; border-radius:9px; background:transparent; color:#837a70; cursor:pointer; transition:.22s; }
+#portfolio .pf-rail button:hover, #portfolio .pf-rail button.on { color:var(--amber-hot); border-color:rgba(240,170,90,.4); background:rgba(240,170,90,.09); box-shadow:0 0 18px rgba(240,170,90,.12); }
+#portfolio .pf-rail .pf-rail-spacer { flex:1; }
+#portfolio .pf-rail svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:1.7; }
+
+/* project list column */
+#portfolio .pf-list-col { min-width:0; display:flex; flex-direction:column; }
+#portfolio .pf-kicker { display:flex; align-items:center; gap:.55rem; color:var(--faint); font:500 .59rem/1.4 "JetBrains Mono",monospace; letter-spacing:.2em; text-transform:uppercase; }
+#portfolio .pf-kicker:before { content:""; width:17px; height:1px; background:var(--amber); box-shadow:0 0 8px var(--amber); }
+#portfolio .pf-title { font:600 clamp(1.7rem,2.6vw,2.35rem)/1.12 'Fraunces',serif; letter-spacing:-.015em; margin:.45rem 0 1.15rem .05rem; color:#faf5ee; }
+#portfolio .pf-title em { font-style:italic; color:var(--amber); }
+#portfolio .pf-list { display:flex; flex-direction:column; gap:.6rem; max-height:640px; overflow-y:auto; padding:2px 6px 1.2rem 2px; scrollbar-width:thin; scrollbar-color:#37302c transparent; }
+#portfolio .pf-item { width:100%; display:grid; grid-template-columns:56px minmax(0,1fr) auto; align-items:center; gap:.75rem; text-align:left; padding:.6rem; background:linear-gradient(110deg,rgba(255,244,230,.045),rgba(255,244,230,.014)); border:1px solid var(--line); border-radius:12px; cursor:pointer; transition:transform .25s cubic-bezier(.2,.7,.2,1),border-color .25s,background .25s,box-shadow .25s; }
+#portfolio .pf-item:hover { transform:translateX(4px); border-color:rgba(255,236,210,.3); background:linear-gradient(110deg,rgba(255,244,230,.075),rgba(255,244,230,.02)); }
+#portfolio .pf-item.active { border-color:rgba(240,163,92,.75); background:linear-gradient(110deg,rgba(240,163,92,.16),rgba(240,163,92,.03)); box-shadow:0 0 0 1px rgba(240,163,92,.14),0 10px 30px rgba(0,0,0,.35),0 0 34px rgba(240,163,92,.1); }
+#portfolio .pf-thumb { width:56px; height:46px; border-radius:7px; overflow:hidden; background:#191521; border:1px solid rgba(255,236,210,.14); }
+#portfolio .pf-thumb img { display:block; width:100%; height:100%; object-fit:cover; object-position:top; }
+#portfolio .pf-item-copy { min-width:0; }
+#portfolio .pf-item .nm { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font:600 .92rem/1.3 'Fraunces',serif; letter-spacing:-.01em; }
+#portfolio .pf-item .sb { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; margin-top:.18rem; color:var(--muted); font:400 .58rem/1.45 "JetBrains Mono",monospace; }
+#portfolio .pf-badge { display:grid; place-items:center; min-width:28px; height:28px; padding:0 .3rem; border:1px solid rgba(255,236,210,.18); border-radius:8px; color:#c9b8a4; font:500 .64rem "JetBrains Mono",monospace; background:rgba(0,0,0,.28); }
+#portfolio .pf-item.active .pf-badge { color:var(--amber-hot); border-color:rgba(240,163,92,.6); background:rgba(240,163,92,.1); }
+#portfolio .pf-list-foot { margin-top:auto; padding:.7rem .2rem; color:var(--faint); font:400 .56rem/1.65 "JetBrains Mono",monospace; letter-spacing:.05em; }
+
+/* project lab panel */
+#portfolio .pf-lab { position:relative; isolation:isolate; min-width:0; min-height:660px; overflow:hidden; border:1px solid rgba(216,196,255,.16); border-radius:18px; padding:1.3rem 1.4rem; background:#0a0812; box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 40px 90px rgba(0,0,0,.5); }
+#portfolio .pf-lab:before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:
+  radial-gradient(ellipse 62% 46% at 68% 30%,rgba(72,82,235,.3),transparent 65%),
+  radial-gradient(ellipse 46% 40% at 88% 62%,rgba(178,64,235,.16),transparent 60%),
+  radial-gradient(ellipse 50% 44% at 20% 88%,rgba(240,150,60,.12),transparent 62%),
+  radial-gradient(ellipse 70% 60% at 50% 50%,rgba(12,10,26,.1),rgba(5,4,10,.65)); }
+/* faint drifting light sweep, replaces the boxy grid */
+#portfolio .pf-lab:after { content:""; position:absolute; inset:-40%; z-index:-1; pointer-events:none; background:conic-gradient(from 210deg at 60% 40%,transparent 0deg,rgba(126,152,255,.06) 70deg,transparent 130deg,rgba(240,163,92,.05) 240deg,transparent 300deg); animation:pf-drift 26s linear infinite; }
+@keyframes pf-drift { to { transform:rotate(360deg); } }
+#portfolio .pf-corner { position:absolute; width:18px; height:18px; border-color:rgba(240,190,130,.6); border-style:solid; opacity:.85; pointer-events:none; }
+#portfolio .pf-corner.tl { top:-1px; left:-1px; border-width:1px 0 0 1px; border-radius:18px 0 0 0; }
+#portfolio .pf-corner.tr { top:-1px; right:-1px; border-width:1px 1px 0 0; border-radius:0 18px 0 0; }
+#portfolio .pf-corner.bl { bottom:-1px; left:-1px; border-width:0 0 1px 1px; border-radius:0 0 0 18px; }
+#portfolio .pf-corner.br { bottom:-1px; right:-1px; border-width:0 1px 1px 0; border-radius:0 0 18px 0; }
+#portfolio .pf-lab-head { position:relative; z-index:5; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+#portfolio .pf-lab-title { font:600 clamp(1.05rem,1.6vw,1.4rem)/1 'Fraunces',serif; letter-spacing:.01em; }
+#portfolio .pf-lab-title span { color:var(--amber); font-family:"JetBrains Mono",monospace; margin-left:.4rem; letter-spacing:-.08em; font-size:.85em; }
+#portfolio .pf-live { display:flex; align-items:center; gap:.45rem; color:#b3a89c; font:400 .58rem "JetBrains Mono",monospace; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; }
+#portfolio .pf-live i { display:block; width:6px; height:6px; border-radius:50%; background:var(--amber); box-shadow:0 0 12px var(--amber); animation:pf-blink 2.4s ease-in-out infinite; }
+@keyframes pf-blink { 0%,100% { opacity:1; } 50% { opacity:.35; } }
+#portfolio .pf-meta { position:absolute; top:5.6rem; left:1.5rem; z-index:2; color:#8d8278; font:400 .6rem/1.85 "JetBrains Mono",monospace; letter-spacing:.04em; }
+#portfolio .pf-meta strong { color:#e0d5c6; font-weight:400; }
+#portfolio .pf-note { position:absolute; top:5.5rem; right:1.3rem; z-index:2; color:#6f655c; font:400 .52rem "JetBrains Mono",monospace; letter-spacing:.12em; writing-mode:vertical-rl; }
+
+/* 3D screenshot stack */
+#portfolio .pf-stage { position:relative; z-index:1; min-height:480px; height:calc(100% - 3.4rem); display:flex; align-items:center; justify-content:center; perspective:1500px; margin-top:.1rem; }
+#portfolio .pf-orbit { position:absolute; width:74%; height:58%; border:1px solid rgba(126,152,255,.22); border-radius:50%; transform:rotate(-24deg); box-shadow:0 0 45px rgba(70,90,255,.08),inset 0 0 40px rgba(70,90,255,.05); pointer-events:none; }
+#portfolio .pf-orbit:before { content:""; position:absolute; inset:11%; border:1px dashed rgba(180,138,255,.2); border-radius:50%; }
+#portfolio .pf-stack { position:relative; width:min(88%,780px); aspect-ratio:1.42; transform-style:preserve-3d; transform:rotateX(55deg) rotateZ(-30deg) translateY(-2%); transition:transform .6s cubic-bezier(.2,.75,.2,1); }
+#portfolio .pf-stage:hover .pf-stack { transform:rotateX(51deg) rotateZ(-27deg) translateY(-4%); }
+#portfolio .pf-stack { --z0:148px; --zs:50px; }
+#portfolio .pf-layer {
+  --s:0; --o:1; --ar:1.6;
+  position:absolute; left:50%; top:50%;
+  width:min(76%, calc(var(--ar) * 66%));
+  aspect-ratio:var(--ar);
+  border-radius:12px; overflow:hidden;
+  background:transparent; border:0;
+  box-shadow:0 22px 42px rgba(0,0,0,.5);
+  opacity:var(--o);
+  transform:
+    translate(-50%,-50%)
+    translateZ(calc(var(--z0) - var(--s) * var(--zs)))
+    translate(calc(var(--s) * 1.3%), calc(-2% + var(--s) * 3.7%));
+  filter:brightness(calc(1 - var(--s) * .17)) saturate(calc(1 - var(--s) * .12));
+  transition:
+    transform .95s cubic-bezier(.22,1,.36,1),
+    opacity .7s ease,
+    filter .7s ease,
+    box-shadow .7s ease;
+  transition-delay:calc(var(--s) * 35ms);
+  will-change:transform,opacity,filter;
+  backface-visibility:hidden;
+}
+#portfolio .pf-layer img { width:100%; height:100%; display:block; object-fit:cover; object-position:top center; opacity:0; transition:opacity .4s ease; }
+#portfolio .pf-layer img.loaded { opacity:1; }
+#portfolio .pf-layer.is-top {
+  box-shadow:0 0 0 1px rgba(255,255,255,.07),0 0 38px rgba(126,152,255,.26),0 30px 60px rgba(0,0,0,.6);
+}
+#portfolio .pf-layer.is-hidden { pointer-events:none; }
+/* app cards: 3 full phone screens side by side (never cropped), 4th slides in */
+#portfolio .pf-layer.pf-appcard { --ar:1.52; }
+#portfolio .pf-strip { display:flex; height:100%; width:800%; animation:pf-slide 14s cubic-bezier(.55,.05,.35,.95) infinite; }
+#portfolio .pf-strip img { width:12.5%; height:100%; display:block; object-fit:contain; object-position:center; opacity:0; transition:opacity .4s ease; }
+#portfolio .pf-strip img.loaded { opacity:1; }
+@keyframes pf-slide {
+  0%,14%  { transform:translateX(0); }
+  24%,38% { transform:translateX(-12.5%); }
+  48%,62% { transform:translateX(-25%); }
+  72%,86% { transform:translateX(-37.5%); }
+  97%,100%{ transform:translateX(-50%); }
+}
+/* the old top card lifts out, swings aside, then drops to the back */
+#portfolio .pf-layer.fly { animation:pf-fly 1.05s cubic-bezier(.45,0,.2,1); transition-delay:0ms; }
+@keyframes pf-fly {
+  0%   { translate:0 0 0; }
+  35%  { translate:20% -16% 120px; }
+  100% { translate:0 0 0; }
+}
+
+/* telemetry tags */
+#portfolio .pf-tag { position:absolute; z-index:4; padding:.42rem .58rem; border:1px solid rgba(126,180,255,.5); border-radius:6px; background:rgba(8,7,16,.82); box-shadow:0 0 18px rgba(70,110,255,.08); color:#a8d4ff; font:400 .57rem/1.55 "JetBrains Mono",monospace; letter-spacing:.05em; backdrop-filter:blur(8px); }
+#portfolio .pf-tag:after { content:""; position:absolute; height:1px; background:linear-gradient(90deg,rgba(140,190,255,.7),transparent); top:50%; }
+#portfolio .pf-tag.t1 { left:4%; top:32%; }
+#portfolio .pf-tag.t1:after { left:100%; width:clamp(20px,4vw,70px); }
+#portfolio .pf-tag.t2 { right:4%; top:22%; border-color:rgba(196,140,255,.5); color:#e2c3ff; }
+#portfolio .pf-tag.t2:after { right:100%; width:clamp(20px,4vw,60px); background:linear-gradient(270deg,rgba(196,140,255,.7),transparent); }
+#portfolio .pf-tag.t3 { left:7%; bottom:19%; border-color:rgba(240,178,110,.5); color:#ffd9ae; }
+#portfolio .pf-tag.t3:after { left:100%; width:clamp(20px,3vw,55px); background:linear-gradient(90deg,rgba(240,178,110,.7),transparent); }
+#portfolio .pf-side-index { position:absolute; right:1.25rem; top:46%; display:flex; flex-direction:column; gap:.42rem; color:#7d7268; font:400 .57rem "JetBrains Mono",monospace; letter-spacing:.12em; }
+#portfolio .pf-side-index span:first-child { color:#efe2d0; }
+#portfolio .pf-bottom-meta { position:absolute; left:1.5rem; bottom:1.3rem; z-index:2; color:#7d7268; font:400 .57rem/1.7 "JetBrains Mono",monospace; letter-spacing:.08em; }
+#portfolio .pf-bottom-meta strong { display:block; color:#cbbfb0; font-weight:400; }
+
+/* terminal card */
+#portfolio .pf-term { position:absolute; right:1.05rem; bottom:1.05rem; z-index:5; width:min(335px,44%); padding:.8rem .85rem .85rem; background:rgba(6,5,11,.92); border:1px solid rgba(232,216,196,.24); border-radius:11px; box-shadow:0 20px 48px rgba(0,0,0,.55),0 0 30px rgba(90,80,220,.1); backdrop-filter:blur(14px); font:400 .59rem/1.8 "JetBrains Mono",monospace; }
+#portfolio .pf-term-head { display:flex; align-items:center; gap:.32rem; margin:-.8rem -.85rem .65rem; padding:.55rem .75rem; border-bottom:1px solid rgba(255,244,230,.1); background:rgba(255,244,230,.04); border-radius:11px 11px 0 0; color:#ded2c2; letter-spacing:.12em; font-size:.92em; }
+#portfolio .pf-dot { width:6px; height:6px; border-radius:50%; background:var(--amber); margin-right:.1rem; }
+#portfolio .pf-dot:nth-child(2) { background:#9db2ff; }
+#portfolio .pf-dot:nth-child(3) { background:var(--green); }
+#portfolio .pf-term .m { color:#837a70; }
+#portfolio .pf-term .g { color:var(--green); }
+#portfolio .pf-term .stackline { color:#c3d2ff; overflow-wrap:anywhere; }
+#portfolio .pf-cta { display:flex; align-items:center; justify-content:space-between; gap:.7rem; margin-top:.75rem; padding:.66rem .72rem; border:1px solid rgba(255,190,122,.9); border-radius:7px; background:linear-gradient(180deg,#ffc47c,#f59a3e); color:#221203; text-decoration:none; font:600 .66rem "JetBrains Mono",monospace; letter-spacing:.05em; box-shadow:0 0 26px rgba(245,154,62,.28); transition:transform .22s,box-shadow .22s; }
+#portfolio .pf-cta:hover { transform:translateY(-2px); box-shadow:0 0 34px rgba(245,154,62,.45); }
+#portfolio .pf-cta.off { opacity:.42; pointer-events:none; filter:grayscale(1); }
+#portfolio .pf-cta svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
+#portfolio .pf-progress { position:absolute; left:0; top:0; height:2px; width:var(--progress,10%); background:linear-gradient(90deg,var(--blue),var(--amber)); box-shadow:0 0 12px rgba(126,152,255,.7); transition:width .45s cubic-bezier(.2,.7,.2,1); }
+#portfolio .pf-item:focus-visible, #portfolio .pf-rail button:focus-visible, #portfolio .pf-cta:focus-visible { outline:2px solid var(--amber); outline-offset:3px; }
+#portfolio .pf-sr { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+@media (max-width:1100px) {
+  #portfolio .pf-wrap { grid-template-columns:42px minmax(220px,285px) minmax(0,1fr); }
+  #portfolio .pf-lab { min-height:615px; padding:1rem; }
+  #portfolio .pf-stage { min-height:435px; }
+  #portfolio .pf-stack { width:77%; }
+  #portfolio .pf-meta { left:1rem; top:4.6rem; font-size:.52rem; }
+  #portfolio .pf-term { width:48%; }
+  #portfolio .pf-tag.t1 { left:2%; }
+  #portfolio .pf-tag.t2 { right:2%; }
+}
+@media (max-width:850px) {
+  #portfolio .pf-wrap { grid-template-columns:1fr; }
+  #portfolio .pf-rail { min-height:0; flex-direction:row; justify-content:flex-start; padding:.45rem; }
+  #portfolio .pf-rail .pf-rail-spacer { flex:1; }
+  #portfolio .pf-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); max-height:none; overflow:visible; }
+  #portfolio .pf-list-foot { display:none; }
+  #portfolio .pf-lab { min-height:625px; }
+  #portfolio .pf-stage { min-height:455px; }
+  #portfolio .pf-stack { width:70%; }
+}
+@media (max-width:560px) {
+  #portfolio { padding:2rem 0; }
+  #portfolio .pf-wrap { padding:0 .85rem; gap:.8rem; }
+  #portfolio .pf-list { grid-template-columns:1fr; gap:.5rem; }
+  #portfolio .pf-item { grid-template-columns:48px minmax(0,1fr) auto; padding:.5rem; }
+  #portfolio .pf-thumb { width:48px; height:40px; }
+  #portfolio .pf-lab { min-height:0; padding:.9rem; border-radius:14px; }
+  #portfolio .pf-stage { min-height:345px; height:auto; margin-top:.25rem; }
+  #portfolio .pf-stack { width:92%; aspect-ratio:1.28; transform:rotateX(54deg) rotateZ(-28deg) translateY(-8%); --z0:92px; --zs:30px; }
+  #portfolio .pf-stage:hover .pf-stack { transform:rotateX(54deg) rotateZ(-28deg) translateY(-8%); }
+  #portfolio .pf-layer { width:min(86%, calc(var(--ar) * 78%)); }
+  #portfolio .pf-meta, #portfolio .pf-tag, #portfolio .pf-side-index, #portfolio .pf-note, #portfolio .pf-bottom-meta { display:none; }
+  #portfolio .pf-term { position:relative; right:auto; bottom:auto; width:100%; margin-top:-.4rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  #portfolio *, #portfolio *:before, #portfolio *:after { transition:none!important; animation:none!important; scroll-behavior:auto!important; }
+}
+</style>
+</head>
+<body style="margin:0;background:#08070b">
+<section id="portfolio" aria-labelledby="pfMainTitle">
+  <div class="pf-amb" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="pf-wrap">
+    <nav class="pf-rail" aria-label="Filter projects">
+      <button class="on" data-f="all" title="All projects" aria-label="All projects" aria-pressed="true">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      </button>
+      <button data-f="web" title="Web projects" aria-label="Web projects" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M4 7 12 3l8 4-8 4-8-4Z"/><path d="m4 12 8 4 8-4M4 17l8 4 8-4"/></svg>
+      </button>
+      <button data-f="app" title="Apps and tools" aria-label="Apps and tools" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M10 5h4M10 18.5h4"/></svg>
+      </button>
+      <span class="pf-rail-spacer"></span>
+      <button id="pfMotion" class="on" title="Toggle motion" aria-label="Toggle 3D motion" aria-pressed="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="5"/></svg>
+      </button>
+    </nav>
+
+    <div class="pf-list-col">
+      <div class="pf-kicker">STX / WORK INDEX</div>
+      <h2 class="pf-title" id="pfMainTitle">Selected <em>Projects</em></h2>
+      <div class="pf-list" id="pfList" aria-label="Project selection"></div>
+      <div class="pf-list-foot">SELECT A PROJECT TO INSPECT<br><span id="pfListCount">11</span> ITEMS / LIVE PREVIEW</div>
+    </div>
+
+    <div class="pf-lab" id="pfLab">
+      <div class="pf-progress" id="pfProgress"></div>
+      <i class="pf-corner tl"></i><i class="pf-corner tr"></i><i class="pf-corner bl"></i><i class="pf-corner br"></i>
+      <div class="pf-lab-head">
+        <div class="pf-lab-title">PROJECT LAB <span>///</span></div>
+        <div class="pf-live"><i></i><span id="pfLiveLabel">LIVE PREVIEW</span></div>
+      </div>
+      <div class="pf-meta">UI/UX&nbsp; · &nbsp;SYSTEMS&nbsp; · &nbsp;DEPLOYMENT<br><strong id="pfBuild">STX_LIVE_STABLE</strong></div>
+      <div class="pf-note">// SELECTED WORK</div>
+      <div class="pf-stage" id="pfStage">
+        <div class="pf-orbit" aria-hidden="true"></div>
+        <div class="pf-tag t1" id="pfTagA">RESPONSIVE UI/UX</div>
+        <div class="pf-tag t2" id="pfTagB">MODULAR DESIGN<br>REAL-WORLD USE</div>
+        <div class="pf-tag t3" id="pfTagC">CLEAN CODEBASE</div>
+        <div class="pf-stack" id="pfStack"></div>
+        <div class="pf-side-index"><span>WEB</span><span>PRODUCT</span><span>DESIGN</span><span>DEPLOY</span></div>
+        <div class="pf-bottom-meta">TECH STACK<strong id="pfMiniStack">REACT · RESPONSIVE · UI/UX</strong></div>
+      </div>
+      <div class="pf-term">
+        <div class="pf-term-head"><i class="pf-dot"></i><i class="pf-dot"></i><i class="pf-dot"></i><span style="margin-left:.4rem">TERMINAL</span></div>
+        <div><span class="m">&gt; status:</span> <span class="g" id="tStatus">LIVE</span></div>
+        <div><span class="m">&gt; category:</span> <span id="tCat">Web experience</span></div>
+        <div><span class="m">&gt; project:</span> <span id="tClient">Last Armour</span></div>
+        <div id="tRepoRow" style="display:none"><span class="m">&gt; repository:</span> <a id="tRepo" href="#" target="_blank" rel="noopener noreferrer" style="color:var(--blue);text-decoration:none">github</a></div>
+        <div style="margin-top:.4rem"><span class="m">&gt; technologies used:</span></div>
+        <div class="stackline" id="tStack">HTML · CSS · Responsive UI</div>
+        <a class="pf-cta" id="pfCta" href="https://lastarmorgame.com" target="_blank" rel="noopener noreferrer">
+          <span id="pfCtaLabel">[ ACCESS SECURE LINK ]</span>
+          <svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+      <span class="pf-sr" id="pfAnnouncement" aria-live="polite"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const projects = [
+    {name:'Last Armour', short:'lastarmorgame.com', category:'Game website', client:'Last Armour', type:'web', url:'https://lastarmorgame.com', image:'projects/lastarmorgame.webp', stack:['HTML5','CSS3','Responsive UI','Gaming UX'], tags:['GAMING EXPERIENCE','ART DIRECTION','RESPONSIVE DESIGN'], status:'LIVE'},
+    {name:'mviz Technologies', short:'mvizindia.com', category:'Enterprise website', client:'mviz Technologies', type:'web', url:'https://mvizindia.com', image:'projects/mviz-homepage.webp', stack:['React','Node.js','Cloud APIs','UI/UX'], tags:['ENTERPRISE UI/UX','SERVICE SHOWCASE','CLEAN CODEBASE'], status:'LIVE'},
+    {name:'Cosmiq Consultancy', short:'cosmiqconsulting.com', category:'Consultancy website', client:'Cosmiq Consultancy', type:'web', url:'https://cosmiqconsulting.com', image:'projects/cosmiq-homepage.webp', stack:['React','Custom UI','Booking flow','Responsive'], tags:['CONSULTANCY UX','BOOKING FLOW','RESPONSIVE DESIGN'], status:'LIVE'},
+    {name:'Aerth Mobility', short:'aerth-mobility.com', category:'Mobility platform', client:'Aerth Mobility', type:'web', url:'https://aerth-mobility.com', image:'projects/aerth-homepage.webp', stack:['HTML5','CSS3','Motion UI','Responsive'], tags:['MOBILITY PLATFORM','PRODUCT STORY','MOTION UI'], status:'LIVE'},
+    {name:'Guided Wealthy', short:'guidedwealthy.in', category:'Fintech website', client:'Guided Wealthy', type:'web', url:'https://guidedwealthy.in', image:'projects/guided-homepage.webp', stack:['React / SPA','Fintech UI','Responsive','Product UX'], tags:['FINTECH EXPERIENCE','DASHBOARD UI','PRODUCT UX'], status:'LIVE'},
+    {name:'DT Digisol', short:'dtdigisol.com', category:'Digital agency website', client:'DT Digisol', type:'web', url:'https://dtdigisol.com', image:'projects/dtdigisol-homepage.webp', stack:['React','Node.js','Lead capture','Responsive'], tags:['AGENCY EXPERIENCE','LEAD CAPTURE','RESPONSIVE UI'], status:'LIVE'},
+    {name:'SchedAI', short:'Google Play', category:'AI productivity app', client:'SchedAI', type:'app', url:'https://play.google.com/store/apps/details?id=com.singularitysoftware.schedai.sched_ai', image:'app-imgs/schedai/schedai1.webp', gallery:['app-imgs/schedai/schedai1.webp','app-imgs/schedai/schedai2.webp','app-imgs/schedai/schedai3.webp','app-imgs/schedai/schedai4.webp'], stack:['LLM Parsing','Calendar API','Smart Agenda'], tags:['AI SCHEDULING','TRANSCRIPT PARSING','CALENDAR SYNC'], status:'LIVE'},
+    {name:'EncryptBoard', short:'Google Play', category:'Security keyboard app', client:'EncryptBoard', type:'app', url:'https://play.google.com/store/apps/details?id=com.singularitysoftware.encryptboard', image:'app-imgs/encryptboard/encryptboard1.webp', gallery:['app-imgs/encryptboard/encryptboard1.webp','app-imgs/encryptboard/encryptboard2.webp','app-imgs/encryptboard/encryptboard3.webp','app-imgs/encryptboard/encryptboard4.webp'], stack:['Cryptography','Keyboard Ext.','Secure I/O'], tags:['ON-THE-FLY ENCRYPTION','SECURE INPUT','MOBILE SECURITY'], status:'LIVE'},
+    {name:'MVS Receiver', short:'Google Play', category:'Utility app', client:'MVS Receiver', type:'app', url:'https://play.google.com/store/apps/details?id=com.mvsr.mvsr_ece', image:'app-imgs/mvsrece/mvsrece2.webp', gallery:['app-imgs/mvsrece/mvsrece1.webp','app-imgs/mvsrece/mvsrece2.webp','app-imgs/mvsrece/mvsrece3.webp','app-imgs/mvsrece/mvsrece4.webp'], stack:['Android','Realtime Data','Notifications'], tags:['LIVE RECEIVING','UTILITY UX','REALTIME FEED'], status:'LIVE'},
+    {name:'Raskamon', short:'Beta access', category:'Wellness app', client:'Raskamon', type:'app', url:'mailto:sanjayanand0509@gmail.com?subject=Raskamon%20Beta%20Access', image:'app-imgs/raskamon/raskamon1.webp', gallery:['app-imgs/raskamon/raskamon1.webp','app-imgs/raskamon/raskamon2.webp','app-imgs/raskamon/raskamon3.webp','app-imgs/raskamon/raskamon4.webp'], stack:['React Native','Expo','Supabase','Google Auth'], tags:['MENTAL WELLNESS','JOURNALING','PERSONALIZED CARE'], status:'IN DEV'},
+    {name:'STrakvu', short:'strakvu.vercel.app', category:'Open-source dev tool', client:'STrakvu · Personal', type:'web', url:'https://strakvu.vercel.app', repo:'https://github.com/Sanju0845/STrakvu', image:'Strakvu/strakvu-dashboard.webp', stack:['Next.js','Tailwind CSS','GitHub API','WakaTime API'], tags:['DEVELOPER TIMELINE','ACTIVITY CALENDAR','AI PROMPT LOGS'], status:'LIVE'}
+  ];
+
+  const $ = id => document.getElementById(id);
+  const list = $('pfList'), stage = $('pfStage'), stackEl = $('pfStack'), lab = $('pfLab');
+  let current = 0, filter = 'all', motion = true, ready = false;
+
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const visibleProjects = () => projects.map((p,i)=>({...p,index:i})).filter(p=>filter==='all'||p.type===filter);
+
+  function renderList() {
+    list.innerHTML = '';
+    visibleProjects().forEach(p => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pf-item' + (p.index===current?' active':'');
+      b.setAttribute('aria-pressed',String(p.index===current));
+      b.innerHTML = `<span class="pf-thumb"><img src="${esc(p.image)}" alt="" loading="lazy"></span>
+        <span class="pf-item-copy"><span class="nm">${esc(p.name)}</span><span class="sb">${esc(p.category)} · ${esc(p.short)}</span></span>
+        <span class="pf-badge">${String(p.index+1).padStart(2,'0')}</span>`;
+      b.addEventListener('click',()=>select(p.index));
+      list.appendChild(b);
+    });
+    $('pfListCount').textContent = String(visibleProjects().length).padStart(2,'0');
+    $('pfProgress').style.setProperty('--progress',`${((current+1)/projects.length)*100}%`);
+  }
+
+  // one real card per project, once — selecting only rotates deck positions
+  const cards = projects.map(p => {
+    const d = document.createElement('div');
+    d.className = 'pf-layer';
+    if (p.gallery) {
+      // app card: 4 screens in a sliding strip (3 visible + 1 gliding in), clones loop it
+      d.classList.add('pf-appcard');
+      const strip = document.createElement('div');
+      strip.className = 'pf-strip';
+      [...p.gallery, ...p.gallery].forEach((src,i) => {
+        const im = document.createElement('img');
+        im.alt = '';
+        im.decoding = 'async';
+        im.loading = i < 4 ? 'eager' : 'lazy';
+        if (i >= 4) im.setAttribute('aria-hidden','true');
+        im.onload = () => {
+          im.classList.add('loaded');
+          // frame width = exactly 3 phone screens, so no zoom/crop is ever needed
+          if (i === 0 && im.naturalWidth && im.naturalHeight) d.style.setProperty('--ar', (3*im.naturalWidth/im.naturalHeight).toFixed(3));
+        };
+        im.onerror = () => { im.onerror = null; im.classList.add('loaded'); };
+        im.src = src;
+        strip.appendChild(im);
+      });
+      d.appendChild(strip);
+      stackEl.appendChild(d);
+      return d;
+    }
+    const img = document.createElement('img');
+    img.alt = p.name + ' screenshot';
+    img.decoding = 'async';
+    img.onload = () => {
+      img.classList.add('loaded');
+      if (img.naturalWidth && img.naturalHeight) d.style.setProperty('--ar', (img.naturalWidth/img.naturalHeight).toFixed(3));
+    };
+    img.onerror = () => { img.onerror = null; img.src = 'ICON/stX.webp'; };
+    img.src = p.image;
+    d.appendChild(img);
+    stackEl.appendChild(d);
+    return d;
+  });
+
+  const OPACITY = [1, 1, .82, .55, 0];
+
+  function layoutStack(animate) {
+    const n = projects.length;
+    cards.forEach((c, i) => {
+      const slot = (i - current + n) % n;          // 0 = top
+      const prev = c.dataset.slot === undefined ? slot : +c.dataset.slot;
+      const s = Math.min(slot, 4);
+      c.style.setProperty('--s', s);
+      c.style.setProperty('--o', OPACITY[s]);
+      c.style.zIndex = n - slot;
+      c.classList.toggle('is-top', slot === 0);
+      c.classList.toggle('is-hidden', slot > 3);
+      c.dataset.slot = slot;
+      if (animate && prev === 0 && slot > 0) {      // old top card -> sent to the back
+        c.classList.remove('fly'); void c.offsetWidth; c.classList.add('fly');
+        c.addEventListener('animationend', () => c.classList.remove('fly'), { once:true });
+      }
+    });
+  }
+
+  function select(index) {
+    if (ready && index === current) return;
+    current = index;
+    const p = projects[index];
+    layoutStack(ready);
+    ready = true;
+
+    $('pfLiveLabel').textContent = p.status==='LIVE' ? 'LIVE PREVIEW' : p.status;
+    $('pfBuild').textContent = `STX_${String(index+1).padStart(2,'0')}_STABLE`;
+    $('pfTagA').textContent = p.tags[0];
+    $('pfTagB').innerHTML = `${esc(p.tags[1])}<br>${esc(p.tags[2])}`;
+    $('pfTagC').textContent = p.stack.slice(0,2).join(' · ').toUpperCase();
+    $('pfMiniStack').textContent = p.stack.slice(0,3).join(' · ').toUpperCase();
+    $('tStatus').textContent = p.status;
+    $('tCat').textContent = p.category;
+    $('tClient').textContent = p.client;
+    $('tStack').textContent = p.stack.join(' · ');
+    const repoRow = $('tRepoRow');
+    if (p.repo) { repoRow.style.display=''; $('tRepo').href = p.repo; $('tRepo').textContent = p.repo.replace('https://github.com/','')+' ↗'; }
+    else repoRow.style.display = 'none';
+    const cta = $('pfCta');
+    cta.href = p.url;
+    cta.classList.remove('off');
+    $('pfCtaLabel').textContent = p.repo ? '[ LAUNCH LIVE DEMO ]' : p.status==='LIVE' ? '[ ACCESS SECURE LINK ]' : '[ REQUEST BETA ACCESS ]';
+    cta.setAttribute('aria-label',`Open ${p.name}`);
+    $('pfAnnouncement').textContent = `${p.name} selected. ${p.category}.`;
+    renderList();
+  }
+
+  document.querySelectorAll('#portfolio .pf-rail button[data-f]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filter = btn.dataset.f;
+      document.querySelectorAll('#portfolio .pf-rail button[data-f]').forEach(x => {
+        x.classList.toggle('on',x===btn);
+        x.setAttribute('aria-pressed',String(x===btn));
+      });
+      if (!visibleProjects().some(p=>p.index===current)) {
+        const first = visibleProjects()[0];
+        if (first) { current = -1; select(first.index); return; }
+      }
+      renderList();
+    });
+  });
+
+  $('pfMotion').addEventListener('click', e => {
+    motion = !motion;
+    e.currentTarget.setAttribute('aria-pressed',String(motion));
+    e.currentTarget.classList.toggle('on',motion);
+    stackEl.style.transition = motion ? '' : 'none';
+    stackEl.style.transform = motion ? '' : 'rotateX(48deg) rotateZ(-26deg)';
+    lab.dataset.motion = motion ? 'on' : 'off';
+  });
+
+  // gentle pointer parallax, damped so it never fights the CSS transform
+  let tilt = {x:0,y:0}, target = {x:0,y:0}, raf = null;
+  function applyTilt() {
+    tilt.x += (target.x - tilt.x) * .08;
+    tilt.y += (target.y - tilt.y) * .08;
+    stackEl.style.transform = `rotateX(${55+tilt.y}deg) rotateZ(${-30+tilt.x}deg) translateY(-2%)`;
+    if (Math.abs(target.x-tilt.x)>.01 || Math.abs(target.y-tilt.y)>.01) raf = requestAnimationFrame(applyTilt);
+    else { raf = null; stackEl.style.transform = ''; }
+  }
+  lab.addEventListener('pointermove', e => {
+    if (!motion || e.pointerType==='touch' || window.matchMedia('(max-width: 560px)').matches) return;
+    const r = lab.getBoundingClientRect();
+    target.x = ((e.clientX-r.left)/r.width-.5) * 6;
+    target.y = ((e.clientY-r.top)/r.height-.5) * -5;
+    if (!raf) raf = requestAnimationFrame(applyTilt);
+  });
+  lab.addEventListener('pointerleave', () => { target.x = 0; target.y = 0; if (!raf) raf = requestAnimationFrame(applyTilt); });
+
+  select(0);
+})();
+</script>
+</body>
+</html>

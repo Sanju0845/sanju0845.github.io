@@ -129,6 +129,61 @@ html[data-theme="dark"] .theme-toggle .moon-icon { display: none; }
     .nav-items.active .nav-link::after { display: none; }
 }
 
+/* ---------- designs dropdown ---------- */
+.nav-dd { position: relative; display: inline-flex; }
+.nav-dd-btn { display: inline-flex; align-items: center; gap: .4rem; position: relative;
+    font-family: 'JetBrains Mono', monospace; font-size: .72rem; font-weight: 500; letter-spacing: .05em;
+    text-transform: uppercase; color: var(--muted); background: none; border: none; cursor: pointer;
+    padding: .55rem .95rem; transition: color .2s ease; }
+.nav-dd-btn::after { content: ''; position: absolute; left: .95rem; right: .95rem; bottom: .28rem; height: 1px; background: var(--fg); transform: scaleX(0); transform-origin: left; transition: transform .25s cubic-bezier(.16,1,.3,1); }
+.nav-dd-btn:hover, .nav-dd.open .nav-dd-btn { color: var(--fg); }
+.nav-dd-btn:hover::after, .nav-dd.open .nav-dd-btn::after { transform: scaleX(1); }
+.nav-dd-btn i { font-size: .55rem; transition: transform .25s ease; }
+.nav-dd.open .nav-dd-btn i { transform: rotate(180deg); }
+.nav-dd-menu { position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(8px);
+    min-width: 195px; display: flex; flex-direction: column; gap: .1rem; padding: .45rem;
+    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 20px 44px rgba(0,0,0,.18); opacity: 0; visibility: hidden;
+    transition: opacity .25s ease, transform .3s cubic-bezier(.16,1,.3,1), visibility .25s; z-index: 10010; }
+.nav-dd.open .nav-dd-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.nav-dd-item { display: flex; align-items: center; gap: .6rem; width: 100%; text-align: left;
+    font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .04em; text-transform: uppercase;
+    color: var(--muted); background: none; border: none; border-radius: 8px; padding: .6rem .7rem; cursor: pointer;
+    transition: background .2s ease, color .2s ease; }
+.nav-dd-item i { font-size: .82rem; color: var(--faint); transition: color .2s ease; }
+.nav-dd-item:hover { background: var(--surface); color: var(--fg); }
+.nav-dd-item:hover i { color: var(--fg); }
+@media (max-width: 768px) {
+    .nav-dd { width: 100%; }
+    .nav-dd-btn { width: 100%; justify-content: space-between; padding: .85rem .2rem; }
+    .nav-dd-btn::after { display: none; }
+    .nav-dd-menu { position: static; left: auto; transform: none; opacity: 1; visibility: visible;
+        display: none; width: 100%; min-width: 0; box-shadow: none; border: none; background: transparent;
+        padding: 0 0 .4rem .9rem; }
+    .nav-dd.open .nav-dd-menu { display: flex; transform: none; }
+}
+
+/* ---------- design viewer overlay ---------- */
+#dv { position: fixed; inset: 0; z-index: 100050; background: var(--bg); display: flex; flex-direction: column;
+    opacity: 0; visibility: hidden; transform: scale(.97); transform-origin: center;
+    transition: opacity .45s ease, transform .55s cubic-bezier(.16,1,.3,1), visibility .45s; }
+#dv.open { opacity: 1; visibility: visible; transform: scale(1); }
+.dv-bar { flex: 0 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 0 1.1rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+.dv-label { display: flex; align-items: center; gap: .6rem; font-family: 'JetBrains Mono', monospace;
+    font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.dv-label .dot { width: 8px; height: 8px; border-radius: 50%; background: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,.15); }
+.dv-label b { color: var(--fg); }
+.dv-actions { display: flex; align-items: center; gap: .6rem; }
+.dv-btn { display: inline-flex; align-items: center; gap: .45rem; font-family: 'JetBrains Mono', monospace;
+    font-size: .68rem; letter-spacing: .05em; text-transform: uppercase; border: 1px solid var(--border);
+    background: var(--bg); color: var(--fg); padding: .5rem .9rem; border-radius: 99px; cursor: pointer; text-decoration: none;
+    transition: background .2s ease, color .2s ease; }
+.dv-btn:hover { background: var(--fg); color: var(--bg); }
+#dv iframe { flex: 1 1 auto; width: 100%; height: 100%; border: 0; background: #fff; opacity: 0; transition: opacity .4s ease; }
+#dv iframe.ready { opacity: 1; }
+@media (max-width: 640px) { .dv-label .txt { display: none; } .dv-btn .txt { display: none; } }
+
 /* ---------- hero ---------- */
 .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding-top: 6rem; position: relative; }
 .hero-grid-lines {
@@ -156,7 +211,7 @@ html[data-theme="dark"] .theme-toggle .moon-icon { display: none; }
 .btn-secondary:hover { background: var(--fg); color: var(--bg); }
 @media (max-width: 720px) { .hero-bottom-row { grid-template-columns: 1fr; gap: 1.6rem; } }
 
-.metrics-strip { border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(3, 1fr); }
+.metrics-strip { border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(2, 1fr); }
 .metric-item { padding: 1.6rem 2rem; border-right: 1px solid var(--border); }
 .metric-item:last-child { border-right: none; }
 .metric-number { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: .2rem; }
@@ -199,6 +254,10 @@ html[data-theme="dark"] .theme-toggle .moon-icon { display: none; }
 }
 .portfolio-group-label i { font-size: .78rem; }
 .portfolio-group-label .count { margin-left: auto; color: var(--faint); }
+.portfolio-group-label .pg-tab { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem .9rem; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--muted); font: inherit; cursor: pointer; transition: background .25s ease, color .25s ease, border-color .25s ease; }
+.portfolio-group-label .pg-tab:hover { color: var(--fg); border-color: var(--border-strong); }
+.portfolio-group-label .pg-tab.on { color: var(--bg); background: var(--fg); border-color: var(--fg); }
+.portfolio-group-label .pg-tab .count { margin-left: .15rem; color: inherit; opacity: .65; }
 .portfolio-group + .portfolio-group { margin-top: 3.2rem; }
 
 /* ---------- project rows (web projects — unchanged) ---------- */
@@ -246,9 +305,10 @@ html[data-theme="dark"] .theme-toggle .moon-icon { display: none; }
 .mobile-app-visual { display: flex; justify-content: center; align-items: flex-end; padding: 1.6rem 1rem 0; border: 1px solid var(--border); position: relative; overflow: hidden; min-height: 180px; }
 .mobile-app-img { height: 165px; width: auto; object-fit: contain; object-position: bottom; display: block; transition: transform .5s cubic-bezier(.16,1,.3,1); }
 .mobile-app-card:hover .mobile-app-img { transform: translateY(-6px); }
-.mobile-app-tri-frame { display: flex; width: 100%; height: 100%; min-height: 210px; overflow: hidden; }
+.mobile-app-tri-frame { display: flex; width: 100%; height: 100%; min-height: 210px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.mobile-app-tri-frame::-webkit-scrollbar { display: none; }
 .mobile-app-visual:has(.mobile-app-tri-frame) { align-items: stretch; padding: 0; min-height: 225px; }
-.mobile-app-tri-frame img { flex: 1 1 0; min-width: 0; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.mobile-app-tri-frame img { flex: 0 0 33.3333%; width: 33.3333%; height: 100%; object-fit: cover; object-position: center top; display: block; scroll-snap-align: start; }
 .mobile-app-tri-frame img + img { border-left: 1px solid var(--border); }
 .mobile-app-card:hover .mobile-app-tri-frame img { transform: none; }
 .app-live-btn {
@@ -502,11 +562,30 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
             <a href="#services" class="nav-link" data-section="services">What I Do</a>
             <a href="#tech-stacks" class="nav-link" data-section="tech-stacks">Tech Stacks</a>
             <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            <div class="nav-dd" id="navDesigns">
+                <button type="button" class="nav-dd-btn" id="ddBtn" aria-haspopup="true" aria-expanded="false">Designs <i class="fas fa-chevron-down"></i></button>
+                <div class="nav-dd-menu" id="ddMenu">
+                    <button type="button" class="nav-dd-item" data-src="design-comix/comic.html" data-name="Comic"><i class="fas fa-book-open"></i> Comic</button>
+                    <button type="button" class="nav-dd-item" data-src="design-editor/editor.html" data-name="Editor"><i class="fas fa-pen-nib"></i> Editor</button>
+                    <button type="button" class="nav-dd-item" data-src="design-bubbly/bubbly.html" data-name="Bubbly"><i class="fas fa-circle-nodes"></i> Bubbly</button>
+                </div>
+            </div>
         </div>
         <div class="nav-status"><span class="dot"></span><span>Available for projects</span></div>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
     </nav>
 </header>
+
+<div id="dv" role="dialog" aria-modal="true" aria-label="Design preview">
+    <div class="dv-bar">
+        <span class="dv-label"><span class="dot"></span><span class="txt">Viewing&nbsp;<b id="dvName">Design</b></span></span>
+        <div class="dv-actions">
+            <a id="dvOpen" class="dv-btn" href="#" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i><span class="txt">Open</span></a>
+            <button id="dvClose" class="dv-btn" type="button"><i class="fas fa-xmark"></i><span class="txt">Close</span></button>
+        </div>
+    </div>
+    <iframe id="dvFrame" title="Design preview" src="about:blank"></iframe>
+</div>
 
 <a href="mailto:sanjayanand0509@gmail.com?subject=Project%20Inquiry" class="floating-contact">
     <i class="fas fa-arrow-up-right-from-square"></i>
@@ -533,7 +612,6 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
         <div class="metrics-strip">
             <div class="metric-item"><div class="metric-number">10+</div><div class="metric-label mono">Projects Delivered</div></div>
             <div class="metric-item"><div class="metric-number">4+</div><div class="metric-label mono">Frameworks</div></div>
-            <div class="metric-item"><div class="metric-number">100%</div><div class="metric-label mono">Custom Code</div></div>
         </div>
     </div>
 </section>
@@ -583,10 +661,13 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
         </div>
 
         <!-- Web Applications -->
-        <div class="portfolio-group">
-            <div class="portfolio-group-label"><i class="fas fa-laptop"></i> Web Applications <span class="count mono">06</span></div>
+        <div class="portfolio-group" id="webGroup">
+            <div class="portfolio-group-label">
+                <button type="button" class="pg-tab on" data-cat="web"><i class="fas fa-laptop"></i> Web Applications <span class="count mono">06</span></button>
+                <button type="button" class="pg-tab" data-cat="os"><i class="fab fa-github"></i> Open Source <span class="count mono">01</span></button>
+            </div>
 
-            <div class="project-row">
+            <div class="project-row" data-cat="web">
                 <div class="project-index mono">01</div>
                 <div class="project-visual">
                     <div class="screenshot-frame">
@@ -608,7 +689,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                 </div>
             </div>
 
-            <div class="project-row">
+            <div class="project-row" data-cat="web">
                 <div class="project-index mono">02</div>
                 <div class="project-visual">
                     <div class="screenshot-frame">
@@ -630,7 +711,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                 </div>
             </div>
 
-            <div class="project-row">
+            <div class="project-row" data-cat="web">
                 <div class="project-index mono">03</div>
                 <div class="project-visual">
                     <div class="screenshot-frame">
@@ -652,7 +733,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                 </div>
             </div>
 
-            <div class="project-row">
+            <div class="project-row" data-cat="web">
                 <div class="project-index mono">04</div>
                 <div class="project-visual">
                     <div class="screenshot-frame">
@@ -674,7 +755,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                 </div>
             </div>
 
-            <div class="project-row">
+            <div class="project-row" data-cat="web">
                 <div class="project-index mono">05</div>
                 <div class="project-visual">
                     <div class="screenshot-frame">
@@ -696,7 +777,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                 </div>
             </div>
 
-            <div class="project-row">
+            <div class="project-row" data-cat="web">
                 <div class="project-index mono">06</div>
                 <div class="project-visual">
                     <div class="screenshot-frame">
@@ -717,15 +798,40 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                     <a class="app-live-btn" href="https://dtdigisol.com" target="_blank" rel="noopener"><span class="live-dot"></span><i class="fas fa-arrow-up-right-from-square"></i> Visit Website</a>
                 </div>
             </div>
+
+            <div class="project-row" data-cat="os" style="display:none">
+                <div class="project-index mono">07</div>
+                <div class="project-visual">
+                    <div class="screenshot-frame">
+                        <div class="browser-header"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
+                        <div class="img-wrap">
+                            <img src="projects/strakvu-homepage.webp" alt="STrakvu developer activity dashboard" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+                            <div class="visual-hover-strip"><span class="live-dot"></span><span>strakvu.vercel.app</span><i class="fas fa-arrow-up-right-from-square"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-body">
+                    <div class="project-top"><h3 class="project-title">STrakvu</h3><span class="project-tag mono">Open Source</span></div>
+                    <p class="project-desc">An open-source developer activity timeline and calendar that unifies GitHub commits, IDE sessions, and AI prompt logs into one visual history — live multi-branch pipeline, WakaTime pulse, streak rhythm, and a per-day work log.</p>
+                    <div class="project-footer">
+                        <div class="tech-stack-tags"><span>Next.js</span><span>Tailwind CSS</span><span>GitHub API</span><span>WakaTime API</span></div>
+                        <span class="client-line">Personal · Open Source</span>
+                    </div>
+                    <a class="app-live-btn" href="https://strakvu.vercel.app" target="_blank" rel="noopener"><span class="live-dot"></span><i class="fas fa-arrow-up-right-from-square"></i> Visit Website</a>
+                </div>
+            </div>
         </div>
 
         <!-- Mobile Applications -->
-        <div class="portfolio-group">
-            <div class="portfolio-group-label"><i class="fas fa-mobile-alt"></i> Mobile Applications <span class="count mono">05</span></div>
+        <div class="portfolio-group" id="appsGroup">
+            <div class="portfolio-group-label">
+                <button type="button" class="pg-tab on" data-cat="app"><i class="fas fa-mobile-alt"></i> Mobile Applications <span class="count mono">04</span></button>
+                <button type="button" class="pg-tab" data-cat="os"><i class="fab fa-github"></i> Open Source <span class="count mono">01</span></button>
+            </div>
 
             <div class="mobile-apps-grid">
 
-                <div class="mobile-app-card">
+                <div class="mobile-app-card" data-cat="app">
                     <div class="mobile-app-visual">
                         <div class="mobile-app-tri-frame">
                             <img src="app-imgs/schedai/schedai1.webp" alt="SchedAI app screen 1" referrerpolicy="no-referrer">
@@ -746,7 +852,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                     </div>
                 </div>
 
-                <div class="mobile-app-card">
+                <div class="mobile-app-card" data-cat="os" style="display:none">
                     <div class="mobile-app-visual">
                         <div class="mobile-app-tri-frame">
                             <img src="app-imgs/encryptboard/encryptboard1.webp" alt="EncryptBoard app screen 1" referrerpolicy="no-referrer">
@@ -767,7 +873,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                     </div>
                 </div>
 
-                <div class="mobile-app-card">
+                <div class="mobile-app-card" data-cat="app">
                     <div class="mobile-app-visual">
                         <div class="mobile-app-tri-frame">
                             <img src="app-imgs/mvsrece/mvsrece1.webp" alt="MVSR College Log app screen 1" referrerpolicy="no-referrer">
@@ -788,7 +894,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                     </div>
                 </div>
 
-                <div class="mobile-app-card">
+                <div class="mobile-app-card" data-cat="app">
                     <div class="mobile-app-visual">
                         <div class="mobile-app-tri-frame">
                             <img src="app-imgs/raskamon/raskamon1.webp" alt="Raskamon wellbeing app home screen" referrerpolicy="no-referrer">
@@ -809,7 +915,7 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
                     </div>
                 </div>
 
-                <div class="mobile-app-card">
+                <div class="mobile-app-card" data-cat="app">
                     <div class="mobile-app-visual">
                         <img src="app-imgs/stx/Stx-agency.webp" alt="STx agency portfolio application" class="mobile-app-img" loading="lazy" decoding="async" referrerpolicy="no-referrer">
                         <div class="mobile-app-overlay">Creative Panel</div>
@@ -826,6 +932,21 @@ html { scrollbar-width: thin; scrollbar-color: var(--border) var(--bg); }
         </div>
     </div>
 </section>
+
+<script>
+(function () {
+  document.querySelectorAll('.portfolio-group').forEach(function (group) {
+    var tabs = group.querySelectorAll('.pg-tab');
+    if (!tabs.length) return;
+    var items = group.querySelectorAll('.project-row[data-cat], .mobile-app-card[data-cat]');
+    function show(cat) {
+      tabs.forEach(function (t) { t.classList.toggle('on', t.getAttribute('data-cat') === cat); });
+      items.forEach(function (r) { r.style.display = r.getAttribute('data-cat') === cat ? '' : 'none'; });
+    }
+    tabs.forEach(function (tab) { tab.addEventListener('click', function () { show(tab.getAttribute('data-cat')); }); });
+  });
+})();
+</script>
 
 <!-- Services -->
 <section class="fade-in-element" id="services">
@@ -1008,6 +1129,54 @@ function scrollToTop(e) {
     mobileToggle?.classList.remove('active');
     navItems?.classList.remove('active');
 }
+
+// Designs dropdown + in-page viewer
+(function () {
+    const dd = document.getElementById('navDesigns');
+    const ddBtn = document.getElementById('ddBtn');
+    const dv = document.getElementById('dv');
+    const dvFrame = document.getElementById('dvFrame');
+    const dvName = document.getElementById('dvName');
+    const dvOpen = document.getElementById('dvOpen');
+    const dvClose = document.getElementById('dvClose');
+    if (!dd || !dv) return;
+
+    const closeDd = () => { dd.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false'); };
+    ddBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = dd.classList.toggle('open');
+        ddBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => { if (!dd.contains(e.target)) closeDd(); });
+
+    function loadDesign(src, name) {
+        dvName.textContent = name;
+        dvOpen.href = src;
+        dvFrame.classList.remove('ready');
+        const url = src + (src.indexOf('?') > -1 ? '&' : '?') + 'v=' + Date.now();
+        dvFrame.onload = () => dvFrame.classList.add('ready');
+        dvFrame.src = url;
+    }
+    function openDesign(src, name) {
+        closeDd();
+        navItems && navItems.classList.remove('active');
+        mobileToggle && mobileToggle.classList.remove('active');
+        document.body.style.overflow = 'hidden';
+        dv.classList.add('open');
+        loadDesign(src, name);
+    }
+    function closeDesign() {
+        dv.classList.remove('open');
+        dvFrame.classList.remove('ready');
+        document.body.style.overflow = '';
+        setTimeout(() => { if (!dv.classList.contains('open')) dvFrame.src = 'about:blank'; }, 500);
+    }
+    dd.querySelectorAll('.nav-dd-item').forEach((it) => {
+        it.addEventListener('click', () => openDesign(it.getAttribute('data-src'), it.getAttribute('data-name')));
+    });
+    dvClose.addEventListener('click', closeDesign);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { if (dv.classList.contains('open')) closeDesign(); else closeDd(); } });
+})();
 </script>
 
 <script>
@@ -1103,6 +1272,157 @@ function scrollToTop(e) {
             cio.observe(el);
         });
     }
+})();
+</script>
+
+<!-- ===== AI Assistant (resume helper, connected to n8n webhook) ===== -->
+<style>
+#ai-fab{position:fixed;bottom:5.6rem;right:1.6rem;z-index:10003;display:inline-flex;align-items:center;gap:.55rem;
+    background:var(--fg);color:var(--bg);border:none;cursor:pointer;padding:.8rem 1.15rem;border-radius:99px;
+    font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;letter-spacing:.04em;
+    box-shadow:0 8px 24px rgba(0,0,0,.18);transition:transform .2s ease,background .2s ease}
+#ai-fab:hover{transform:translateY(-2px)}
+#ai-fab i{font-size:.9rem}
+#ai-fab .ai-dot{width:7px;height:7px;border-radius:50%;background:#16a34a;animation:aiPulse 1.6s infinite}
+@keyframes aiPulse{50%{box-shadow:0 0 0 5px rgba(22,163,74,.18)}}
+@media (max-width:640px){#ai-fab{bottom:4.8rem;right:1.2rem;padding:.75rem}}
+#ai-fab{display:none}#ai-fab.show{display:inline-flex}
+
+#ai-panel{position:fixed;bottom:5.6rem;right:1.6rem;z-index:10004;width:380px;max-width:calc(100vw - 2rem);
+    height:520px;max-height:calc(100vh - 8rem);display:none;flex-direction:column;overflow:hidden;
+    background:var(--bg);border:1px solid var(--border);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+#ai-panel.open{display:flex}
+@media (max-width:640px){#ai-panel{bottom:0;right:0;left:0;width:100%;max-width:100%;height:82vh;max-height:82vh;border-radius:16px 16px 0 0}}
+.ai-head{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.15rem;border-bottom:1px solid var(--border);background:var(--surface)}
+.ai-head .t{display:flex;align-items:center;gap:.6rem}
+.ai-head .av{width:30px;height:30px;border-radius:50%;background:var(--fg);color:var(--bg);display:grid;place-items:center;font-size:.85rem}
+.ai-head h4{font-size:.95rem;font-weight:700;letter-spacing:-.01em}
+.ai-head p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.05em}
+.ai-close{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.1rem;padding:.2rem .4rem;transition:color .2s}
+.ai-close:hover{color:var(--fg)}
+.ai-log{flex:1;overflow-y:auto;padding:1.1rem;display:flex;flex-direction:column;gap:.85rem}
+.ai-msg{max-width:85%;padding:.7rem .9rem;border-radius:14px;font-size:.86rem;line-height:1.6;white-space:pre-wrap;word-wrap:break-word}
+.ai-msg.bot{align-self:flex-start;background:var(--surface);border:1px solid var(--border);border-bottom-left-radius:4px}
+.ai-msg.user{align-self:flex-end;background:var(--fg);color:var(--bg);border-bottom-right-radius:4px}
+.ai-msg.typing{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.75rem}
+.ai-quick{display:flex;gap:.45rem;flex-wrap:wrap;padding:0 1.1rem .7rem}
+.ai-quick button{font-family:'JetBrains Mono',monospace;font-size:.66rem;color:var(--muted);background:var(--bg);
+    border:1px solid var(--border);padding:.4rem .65rem;border-radius:99px;cursor:pointer;transition:.2s}
+.ai-quick button:hover{border-color:var(--fg);color:var(--fg)}
+.ai-form{display:flex;gap:.5rem;padding:.8rem 1rem;border-top:1px solid var(--border);background:var(--surface)}
+.ai-form input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.7rem .85rem;
+    color:var(--fg);font-family:'Bricolage Grotesque',sans-serif;font-size:.85rem;outline:none}
+.ai-form input:focus{border-color:var(--fg)}
+.ai-form button{background:var(--fg);color:var(--bg);border:none;border-radius:10px;padding:0 .95rem;cursor:pointer;font-size:.9rem}
+.ai-form button:disabled{opacity:.5;cursor:default}
+.ai-powered{font-family:'JetBrains Mono',monospace;font-size:.56rem;color:var(--faint);text-align:center;padding:.35rem 0 .55rem;background:var(--surface)}
+</style>
+
+<button id="ai-fab" class="show" aria-label="Ask about Sanjay"><span class="ai-dot"></span><i class="fas fa-robot"></i>Ask about me</button>
+
+<div id="ai-panel" role="dialog" aria-label="AI Assistant">
+  <div class="ai-head">
+    <div class="t"><span class="av"><i class="fas fa-robot"></i></span>
+      <div><h4>Sanjay's Assistant</h4><p>ask about the resume &rarr;</p></div>
+    </div>
+    <button class="ai-close" aria-label="Close"><i class="fas fa-xmark"></i></button>
+  </div>
+  <div class="ai-log" id="ai-log"></div>
+  <div class="ai-quick" id="ai-quick"></div>
+  <form class="ai-form" id="ai-form">
+    <input id="ai-input" type="text" autocomplete="off" placeholder="Type your question..." aria-label="Question">
+    <button type="submit" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+  </form>
+  <div class="ai-powered">AI assistant &middot; powered by n8n</div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  /* >>> PASTE YOUR n8n CHAT / WEBHOOK URL HERE <<<  (leave '' to use the built-in answers) */
+  var N8N_WEBHOOK_URL = '';
+
+  var SESSION = localStorage.getItem('ai_sid') || ('web-'+Math.random().toString(36).slice(2)+Date.now());
+  try{localStorage.setItem('ai_sid',SESSION)}catch(e){}
+
+  var RESUME = {
+    role:'Full-Stack & Systems Engineer — I build web platforms, cross-platform mobile apps, secure cloud automations and SaaS products.',
+    skills:'Core stack: React, Flutter, Node.js, Firebase, Supabase, Python, Kotlin, Vite, plus Docker, n8n and AI/LLM integrations.',
+    experience:'10+ projects delivered across 4+ frameworks — spanning web applications, native mobile apps, workflow automation and AI agents.',
+    projects:'Web: Last Armour, mviz Technologies, Cosmiq Consultancy, Aerth Mobility, Guided Wealthy, DT Digisol, Strakvu (open source).\nApps: SchedAI, EncryptBoard, MVSR College Log, Raskamon, STx Agency.',
+    services:'I offer: mobile app development, high-converting website design, full-stack development, SaaS architecture, custom website themes, and AI integration.',
+    contact:'Email me at sanjayanand0509@gmail.com or use the "Let\u2019s Talk" button. Portfolio: sanju0845.github.io.',
+    education:'Self-driven engineer, currently deepening Java & enterprise back-end fundamentals (multi-threaded systems, scalable secure architectures).',
+    availability:'Available for freelance and full-stack / mobile / automation projects. Reach out any time.'
+  };
+  var QUICK = ['What is your experience?','What are your tech skills?','Tell me about your projects','What services do you offer?','How can I contact you?'];
+
+  function localAnswer(q){
+    q=(q||'').toLowerCase();
+    var map=[[/(skill|stack|technolog|language|framework|react|flutter|node)/,RESUME.skills],
+      [/(project|portfolio|work have|built|client)/,RESUME.projects],
+      [/(service|offer|what.*(you do|help)|freelance)/,RESUME.services],
+      [/(experience|years|how long|track record|deliver)/,RESUME.experience],
+      [/(contact|email|reach|hire|phone)/,RESUME.contact],
+      [/(education|study|degree|college|learning|java)/,RESUME.education],
+      [/(available|availab|free|open for|work with)/,RESUME.availability],
+      [/(who are you|about you|introduce|yourself|role|what do you do)/,RESUME.role]];
+    for(var i=0;i<map.length;i++){if(map[i][0].test(q))return map[i][1];}
+    return "I can help with Sanjay's experience, skills, projects, services, education and contact. Which would you like to know?";
+  }
+
+  function extract(d){
+    if(d==null)return '';
+    if(typeof d==='string')return d;
+    if(Array.isArray(d))return extract(d[0]);
+    return d.output||d.text||d.message||d.response||d.answer||d.reply||
+      (d.data&&extract(d.data))||(d.result&&extract(d.result))||JSON.stringify(d);
+  }
+
+  var log=document.getElementById('ai-log'),fab=document.getElementById('ai-fab'),
+      panel=document.getElementById('ai-panel'),form=document.getElementById('ai-form'),
+      input=document.getElementById('ai-input'),quick=document.getElementById('ai-quick');
+
+  function bubble(text,cls){var d=document.createElement('div');d.className='ai-msg '+cls;d.textContent=text;log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+
+  QUICK.forEach(function(t){var b=document.createElement('button');b.type='button';b.textContent=t;
+    b.onclick=function(){send(t)};quick.appendChild(b);});
+
+  function typing(){return bubble('Sanjay\u2019s assistant is thinking...','bot typing');}
+
+  async function toN8n(q){
+    var payload={action:'sendMessage',sessionId:SESSION,chatInput:q,input:q,message:q,question:q};
+    var res=await fetch(N8N_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    var ct=(res.headers.get('content-type')||'');
+    var body=ct.indexOf('json')>-1?await res.json():await res.text();
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    return extract(body).trim();
+  }
+
+  var busy=false;
+  async function send(q){
+    q=(q||'').trim();if(!q||busy)return;
+    busy=true;bubble(q,'user');input.value='';
+    if(quick)quick.style.display='none';
+    var t=typing();
+    try{
+      var ans;
+      if(N8N_WEBHOOK_URL){ans=await toN8n(q);}
+      else{await new Promise(function(r){setTimeout(r,550)});ans=localAnswer(q);}
+      t.remove();bubble(ans,'bot');
+    }catch(e){
+      t.remove();bubble('Sorry \u2014 the assistant is unreachable right now.\n'+e.message,'bot');
+    }finally{busy=false;input.focus();}
+  }
+
+  form.addEventListener('submit',function(e){e.preventDefault();send(input.value);});
+  function openPanel(){panel.classList.add('open');fab.classList.remove('show');
+    if(!log.children.length)bubble("Hi! I'm Sanjay's AI assistant. Ask me about his experience, skills, projects, services or how to get in touch.",'bot');
+    setTimeout(function(){input.focus()},60);}
+  function closePanel(){panel.classList.remove('open');fab.classList.add('show');}
+  fab.addEventListener('click',openPanel);
+  panel.querySelector('.ai-close').addEventListener('click',closePanel);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&panel.classList.contains('open'))closePanel();});
 })();
 </script>
 </body>
