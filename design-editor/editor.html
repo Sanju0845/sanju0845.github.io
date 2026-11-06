@@ -160,7 +160,7 @@ sec('stack','04','Toolkit Matrix','Verified Tech Stacks','The precise languages,
 var W='Full-Stack · Mobile Apps · Automation · SaaS · AI · Systems · ';document.getElementById('mq').textContent=W+W+W+W;
 
 /* ---------- engine ---------- */
-var MAXG=2,NA=14,live=false,tour=false,ready=false,running=0,doneB=0,doneE=0,buildLock=0;
+var MAXG=2,NA=14,live=false,tour=false,ready=false,running=0,doneB=0,doneE=0,buildLock=0,startAt=0;
 var PAL=['#22c55e','#a855f7','#ec4899','#38bdf8','#facc15','#f97316','#14b8a6','#e11d2e','#60a5fa','#c084fc','#4ade80','#fb7185','#fde047','#67e8f9'];
 var NM=['ARIA','KOJI','RIVA','NOVA','SOL','ZED','MIRA','IRIS','KAI','LUNA','REX','JADE','VEGA','ECHO'];
 var $=function(i){return document.getElementById(i)},S=function(){return+$('sp').value||1};
@@ -231,8 +231,8 @@ for(var i=0;i<28;i++){var p=document.createElement('div');p.className='plus';p.s
 /* screenshot sliders: 3 visible, next one slides in */
 document.querySelectorAll('.trk').forEach(function(tk,ix){var vis=true;new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(tk);setTimeout(function(){setInterval(function(){if(!vis||document.hidden)return;tk.style.transition='transform 1.1s cubic-bezier(.65,0,.35,1)';tk.style.transform='translateX(-33.3333%)';setTimeout(function(){tk.style.transition='none';tk.appendChild(tk.firstElementChild);tk.style.transform='none'},1150)},3200)},ix*600)});
 new IntersectionObserver(function(es){if(es[0].isIntersecting)$('fo').classList.add('in')},{threshold:.15}).observe($('fo'));
-(function f(t){if(!live){tickAg(t);if(tour){if(innerHeight+scrollY>=document.documentElement.scrollHeight-2)setTour(false);else scrollBy(0,0.4*S())}}requestAnimationFrame(f)})(0);
-rs();var n=0,iv=setInterval(function(){n+=4;if(n>=100){n=100;clearInterval(iv);setTimeout(function(){$('ld2').classList.add('f');ready=true;scan()},250)}$('ln').textContent=n;$('lbi').style.width=n+'%'},28);
+(function f(t){if(!live){tickAg(t);if(tour){if(innerHeight+scrollY>=document.documentElement.scrollHeight-2)setTour(false);else if(ready&&t>startAt)scrollBy(0,0.4*S())}}requestAnimationFrame(f)})(0);
+rs();var n=0,iv=setInterval(function(){n+=4;if(n>=100){n=100;clearInterval(iv);setTimeout(function(){$('ld2').classList.add('f');ready=true;startAt=performance.now()+2600;scan()},250)}$('ln').textContent=n;$('lbi').style.width=n+'%'},28);
 if(matchMedia('(prefers-reduced-motion:reduce)').matches)goLive();else setTour(true);
 })();
 </script></body></html>
